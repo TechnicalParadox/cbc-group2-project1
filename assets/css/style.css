@@ -1,0 +1,15 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.input::placeholder {
+    color: white;
+}

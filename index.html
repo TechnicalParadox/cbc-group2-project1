@@ -4,29 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">  
-  <title>Document</title> <!-- TODO: update title -->
+  <title>Sunrise-Sunset-App</title> <!-- TODO: update title -->
   <!-- cdn for bulma.io -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css"
   integrity="sha512-ZRv40llEogRmoWgZwnsqke3HNzJ0kiI0+pcMgiz2bxO6Ew1DVBtWjVn0qjrXdT3+u+pSN36gLgmJiiQ3cQtyzA=="
   crossorigin="anonymous"/>
+  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- ------activate below to debug layout------ -->
+  <!-- <link rel="stylesheet" href="assets/css/debug.css"> -->
 </head>
 <body>
   <!-- sample bulma html -->
-  <section class="section">
+  <section class="hero is-fullheight has-background-black">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title center">
+          My Sun Tracker 
+        </h1> 
+        <br>     
+        <p class="subtitle center">
+          A simple app to find info about your local:  &nbsp<strong class="has-text-warning"> Sunrise </strong>&nbsp and &nbsp<strong class="has-text-danger"> Sunset </strong>!
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="section has has-background-black">
     <div class="container">
-      <h1 class="title">
-        Hello World
-      </h1>
-      <p class="subtitle">
-        My first website with <strong>Bulma</strong>!
-      </p>
+      <div class="field">
+        <div class="control center">
+          <input class="input is-warning is-rounded" type="text" style="max-width: 512px;" placeholder="Search for other cities here!">
+          <button class="button is-danger is-outlined is-rounded"><span class="icon is-small">
+            <i class="fas fa-sun"></i>
+          </span></button>
+        </div>
     </div>
   </section>
 
-  <!-- cdn for jquery and fontawesome -->
+
+  <!-- cdn for jquery and moment in case we need them -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" 
+        crossorigin="anonymous"></script>  
 </body>
 </html>
