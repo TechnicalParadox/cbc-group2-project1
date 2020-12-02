@@ -15,7 +15,7 @@ function loadRecent()
 
   // TODO: Automatically fetch data using lastSearch and populate screen with info
 }
-loadRecent(); // Load most recent search immediately upon startup
+loadRecent(); // Load most recent search immediately upon load
 
 /** Handles click of search button. Saves most recent search to localStorage and
  fetches relevant data from API */
