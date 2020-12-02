@@ -87,6 +87,11 @@ function updateTimes(lat, long, date)
   {
     console.log(data);
     // TODO: process repsonse and update times displayed on page
+    let sunriseUTC, noonUTC, sunsetUTC;
+    sunriseUTC = data.results.sunrise;
+    noonUTC = data.results.solar_noon;
+    sunsetUTC = data.results.sunset;
+    console.log(sunriseUTC, noonUTC, sunsetUTC);
   });
 }
 
