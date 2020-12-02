@@ -28,7 +28,53 @@
 	}
 }
 
+/* Search section */
 .search {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+
+/* Scroll cue start */
+.header-down-arrow {
+  position: absolute;
+    bottom: 1vh;
+    left: 0;
+    right: 0;
+  text-align: center;
+  z-index: 10;
+}
+
+@keyframes fade-slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(4rem);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: none;
+  }
+  50% {
+    opacity: .8;
+    transform: scale(.8);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.header-down-arrow img {
+  animation: fade-slide-up 1s .5s ease-out forwards,
+    pulse 2s 1.5s ease-out infinite;
+  opacity: 0;
+}
+
+
+/* Scroll cue end */
