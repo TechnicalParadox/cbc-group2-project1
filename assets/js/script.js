@@ -21,8 +21,8 @@ if (navigator.geolocation)
 
 /**
  * Fetch DD Coordinates using City and updateTimes using coords
- * @param  {[type]} city [description]
- * @return {[type]}      [description]
+ * @param  {String} city - really just any place to get coords of
+ * @return {undefined}   - no return, callback after fetch calls updateTimes
  */
 function cityToCoords(city)
 {
