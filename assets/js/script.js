@@ -108,6 +108,5 @@ $("#button_search").click(function()
   console.log(input); // Log value of search input to console.
 
   // Get coords from input and update sunrise/sunset times
-  let coords = cityToCoords(input);
-  updateTimes(coords[0], coords[1]);
+  cityToCoords(input);
 });
