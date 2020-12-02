@@ -92,7 +92,59 @@ function updateTimes(lat, long, date)
     noonUTC = data.results.solar_noon;
     sunsetUTC = data.results.sunset;
     console.log(sunriseUTC, noonUTC, sunsetUTC);
+    now = luxon.DateTime.fromJSDate(new Date());
+    let sunrise = utcToLocal(now, sunriseUTC);
+    let noon = utcToLocal(now, noonUTC);
+    let sunset = utcToLocal(now, sunsetUTC);
+    console.log(sunrise, noon, sunset);
   });
+}
+
+function utcToLocal (now, timeUTC)
+{
+  let am = timeUTC.includes('AM') ? true : false;
+  console.log("AM: ", am);
+
+  let word = "", hour = 0, min = 0;
+  let phase = 0;
+  for (char of timeUTC)
+  {
+    if (char == ":")
+    {
+      phase++;
+      switch (phase)
+      {
+        case 1:
+          hour = parseInt(word);
+          word = "";
+          break;
+        case 2:
+          min = parseInt(word);
+          break;
+
+        default:
+          break;
+      }
+    }
+    else
+      word += char;
+
+  }
+
+  if (am)
+  {
+    if (hour == 12)
+      hour = 0;
+  }
+  else
+  {
+    if (hour != 12)
+      hour += 12;
+  }
+
+  let utcTime = luxon.DateTime.utc(now.year, now.month, now.day, hour, min);
+  let localTime = utcTime.toLocal();
+  return localTime.hour + ":" + localTime.minute;
 }
 
 /** Handles click of search button. Saves most recent search to localStorage and
