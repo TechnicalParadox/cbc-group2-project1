@@ -1,3 +1,9 @@
+/** Sunset Sunrise API url example https://sunrise-sunset.org/api
+  * leaving out date defaults to current
+  * https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400&date=2020-12-02
+  */
+ let SS_API_URL = "https://api.sunrise-sunset.org/json?";
+
 /** Loads the most recent search from localStorage and changes #input_search 's
 placeholder value to the most recent search */
 function loadRecent()
