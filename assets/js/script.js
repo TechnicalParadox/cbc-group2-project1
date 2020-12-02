@@ -97,14 +97,14 @@ function updateTimes(lat, long, date)
     let sunriseUTC = data.results.sunrise;
     let noonUTC = data.results.solar_noon;
     let sunsetUTC = data.results.sunset;
-    console.log("UTC Times:", sunriseUTC, noonUTC, sunsetUTC);
+    console.log("UTC Times (12hr):", sunriseUTC, noonUTC, sunsetUTC);
 
     // Convert Times UTC -> Local
     let now = luxon.DateTime.fromJSDate(new Date()); // Create Luxon.DateTime object from current JS date
     let sunrise = utcToLocal(now, sunriseUTC);
     let noon = utcToLocal(now, noonUTC);
     let sunset = utcToLocal(now, sunsetUTC);
-    console.log("Local Times:", sunrise, noon, sunset);
+    console.log("Local Times (24hr):", sunrise, noon, sunset);
   });
 }
 
