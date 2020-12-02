@@ -1,5 +1,9 @@
 # Group 2 Project 1 repo
 
+## Credits
+[Sunrise Sunset API](https://sunrise-sunset.org/api)
+[OpenCage API](https://opencagedata.com/api)
+
 ## Project Requirements
 * Use a CSS framework other than Bootstrap.
 * Be deployed to GitHub Pages.
