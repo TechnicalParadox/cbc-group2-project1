@@ -12,7 +12,7 @@
   <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
   <link rel="stylesheet" href="assets/css/helpers.css">
   <!-- ------activate below to debug layout------ -->
-   <link rel="stylesheet" href="assets/css/debug.css">
+  <!-- <link rel="stylesheet" href="assets/css/debug.css"> -->
 
   <!-- Scroll cue thanks to https://cssanimation.rocks/scroll-cue/ -->
   <section class="header-down-arrow">
@@ -116,7 +116,7 @@
   </section>
 
   <!-- search bar -->
-  <section class="section has has-background-black search">
+  <section class="section has-background-black search">
     <div class="container">
       <div class="field">
         <div class="control center">
@@ -127,10 +127,15 @@
             </span>
           </button>
         </div>
+      </div>
     </div>
   </section>
 
   <!-- footer (if we want one) -->
+  <!-- attribution to sunrise-sunset api, required by ToS that we provide link to site -->
+  <footer class="has-background-black p-3">
+    Powered by <a href="https://sunrise-sunset.org/api" target="_blank">Sunrise Sunset</a>
+  </footer>
 
 
   <!-- cdn for jquery and moment in case we need them -->
