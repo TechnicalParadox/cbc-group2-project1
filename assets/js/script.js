@@ -99,7 +99,7 @@ function updateTimes(lat, long, date)
     console.log(sunriseUTC, noonUTC, sunsetUTC);
 
     // Convert Times UTC -> Local
-    now = luxon.DateTime.fromJSDate(new Date());
+    let now = luxon.DateTime.fromJSDate(new Date()); // Create Luxon.DateTime object from current JS date
     let sunrise = utcToLocal(now, sunriseUTC);
     let noon = utcToLocal(now, noonUTC);
     let sunset = utcToLocal(now, sunsetUTC);
@@ -168,7 +168,7 @@ function utcToLocal (now, timeUTC)
   // returns it as local time.
   let utcTime = luxon.DateTime.utc(now.year, now.month, now.day, hour, min);
   let localTime = utcTime.toLocal();
-  return localTime.hour + ":" + localTime.minute;
+  return ("0"+localTime.hour).slice(-2) + ":" + ("0"+localTime.minute).slice(-2);
 }
 
 /** Handles click of search button. Saves most recent search to localStorage and
