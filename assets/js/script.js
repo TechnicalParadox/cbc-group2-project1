@@ -73,6 +73,13 @@ function loadRecent(currentPos)
 }
 loadRecent(); // Load most recent search immediately upon site load
 
+/**
+ * Updates the solar times using the new geolocation
+ * @param  {String} lat  - the lattitude DD coord
+ * @param  {String} long - the longitude DD coordinate
+ * @param  {// TODO:} date - in future will be used to check solar times of different dates
+ * @return {undefined}
+ */
 function updateTimes(lat, long, date)
 {
   // form URL to call API
@@ -85,14 +92,14 @@ function updateTimes(lat, long, date)
   console.log(url);
   $.get(url, function(data)
   {
-    console.log(data);
-    // TODO: process repsonse and update times displayed on page
-    let sunriseUTC, noonUTC, sunsetUTC;
-    sunriseUTC = data.results.sunrise;
-    noonUTC = data.results.solar_noon;
-    sunsetUTC = data.results.sunset;
+    // Get UTC times from response
+    let sunriseUTC = data.results.sunrise;
+    let noonUTC = data.results.solar_noon;
+    let sunsetUTC = data.results.sunset;
     console.log(sunriseUTC, noonUTC, sunsetUTC);
-    now = luxon.DateTime.fromJSDate(new Date());
+
+    // Convert Times UTC -> Local
+    now = luxon.DateTime.fromJSDate(new Date()); /
     let sunrise = utcToLocal(now, sunriseUTC);
     let noon = utcToLocal(now, noonUTC);
     let sunset = utcToLocal(now, sunsetUTC);
@@ -100,25 +107,34 @@ function updateTimes(lat, long, date)
   });
 }
 
+/**
+ * [utcToLocal description]
+ * @param  {Luxon.DateTime} now     - set to today, necessary to ensure proper
+ *                                    conversion during all times of year (DST)
+ * @param  {String} timeUTC         - (H:M***AM/PM) the time to convert to local
+ * @return {String}                 - the converted local time (0-23:0-59)
+ */
 function utcToLocal (now, timeUTC)
 {
-  let am = timeUTC.includes('AM') ? true : false;
-  console.log("AM: ", am);
+  let am = timeUTC.includes('AM') ? true : false; // short way to determine if AM or not
 
-  let word = "", hour = 0, min = 0;
-  let phase = 0;
+  let word = "", hour = 0, min = 0; // quick-init variables we need
+  let phase = 0; // counter num to determine which section of the time is being processed
+
+  // Loop through every character of the UTC time and determine the hour and minute's values
   for (char of timeUTC)
   {
-    if (char == ":")
+    if (char == ":") // if : we know we have read the previous segment
     {
-      phase++;
-      switch (phase)
+      phase++; // move to next phase/segment
+
+      switch (phase) // check which phase we are in
       {
-        case 1:
+        case 1: // Phase 1 obtains the hour value and resets word to ""
           hour = parseInt(word);
           word = "";
           break;
-        case 2:
+        case 2: // Phase 2 obtains the minute value
           min = parseInt(word);
           break;
 
@@ -126,22 +142,30 @@ function utcToLocal (now, timeUTC)
           break;
       }
     }
-    else
+    else // if not : we add the character to our current word
       word += char;
 
   }
+  // We now have hour and minute integer values that represent the fetched
+  // UTC solar time.
 
+// We convert the hours from a 12 hour system to 24 hour military time
+// We must do this because we need to enter an hour in 24 hour format for Luxon
+  // If it is 12am, we set the hour to 0
   if (am)
   {
     if (hour == 12)
       hour = 0;
   }
+  // If it is not AM, and not 12 PM, we add 12 hours, 7PM -> 19 (military hour)
   else
   {
     if (hour != 12)
       hour += 12;
   }
 
+  // Creates a Luxon.DateTime object from the UTC time we parsed and then
+  // returns it as local time.
   let utcTime = luxon.DateTime.utc(now.year, now.month, now.day, hour, min);
   let localTime = utcTime.toLocal();
   return localTime.hour + ":" + localTime.minute;
