@@ -19,34 +19,24 @@ if (navigator.geolocation)
   navigator.geolocation.getCurrentPosition(loadRecent); // Call loadRecent, passing location
 }
 
-function coordsToCity(lat, long)
-{
-  let url = OCD_GEOC_URL + "q=" + lat + "+" + long + "&key=" + OCD_API_KEY;
-
-  let city;
-  $.get(url, function(data)
-  {
-    console.log(data);
-    // TODO: return city from response ('city, st')
-  });
-  return city;
-}
-
+/**
+ * Fetch DD Coordinates using City and updateTimes using coords
+ * @param  {[type]} city [description]
+ * @return {[type]}      [description]
+ */
 function cityToCoords(city)
 {
   let url = OCD_GEOC_URL + "q=" + city + "&key=" + OCD_API_KEY;
 
-  let coords = [1, 2];
   $.get(url, function(data)
   {
-    console.log(data);
-    // TODO: return coords[] ([0] = lat, [1] = long) from response
-    coords[0] = (data.results[0].geometry.lat);
-    coords[1] = (data.results[0].geometry.lng);
-    console.log(coords);
+    // Get lat/lng out of response
+    let lat = (data.results[0].geometry.lat);
+    let lng = (data.results[0].geometry.lng);
+
+    // Update times with coordinates.
+    updateTimes(lat, lng);
   });
-  console.log(coords);
-  return coords;
 }
 
 /**
@@ -78,14 +68,8 @@ function loadRecent(currentPos)
   // Set #input_search value to lastSearch
   $("#input_search").val(lastSearch);
 
-  let hello = [0, 2, 3];
-  hello[3] = 4;
-  console.log(hello);
-
-  // Get coords and update times
+  // Get coords and update times from city
   let coords = cityToCoords(lastSearch);
-  console.log(coords);
-  updateTimes(coords[0], coords[1]);
 }
 loadRecent(); // Load most recent search immediately upon site load
 
