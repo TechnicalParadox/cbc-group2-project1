@@ -22,19 +22,27 @@ if (navigator.geolocation)
 function coordsToCity(lat, long)
 {
   let url = OCD_GEOC_URL + "q=" + lat + "+" + long + "&key=" + OCD_API_KEY;
-  $.get(url, function(response)
+
+  let city;
+  $.get(url, function(data)
   {
-    // TODO: return city from response
+    console.log(data);
+    // TODO: return city from response ('city, st')
   });
+  return city;
 }
 
 function cityToCoords(city)
 {
   let url = OCD_GEOC_URL + "q=" + city + "&key" + OCD_API_KEY;
-  $.get(url, function(response)
+
+  let coords;
+  $.get(url, function(data)
   {
-    // TODO: return coords from response
+    console.log(data);
+    // TODO: return coords[] ([0] = lat, [1] = long) from response
   });
+  return coords;
 }
 
 /**
@@ -63,17 +71,29 @@ function loadRecent(currentPos)
     return; // Return early, no need to go through rest of function
   }
 
-  // Set #input_search placeholder to lastSearch.
+  // Set #input_search placeholder to lastSearch
   $("#input_search").attr("placeholder", lastSearch);
 
+  // Get coords and update times
   let coords = cityToCoords(lastSearch);
   updateTimes(coords[0], coords[1]);
 }
-loadRecent(); // Load most recent search immediately upon load
+loadRecent(); // Load most recent search immediately upon site load
 
-function updateTimes(lat, long)
+function updateTimes(lat, long, date)
 {
+  // form URL to call API
+  let url = "";
+  if (date === undefined) // If date isn't provided, do not use date in url
+    url = SS_API_URL + "lat=" + lat + "&lng=" + long;
+  else // If date is provided, use date in url
+    url = SS_API_URL + "lat=" + lat + "&lng=" + long + "&date=" + date;
 
+  $.get(url, function(data)
+  {
+    console.log(data);
+    // TODO: process repsonse and update times displayed on page
+  });
 }
 
 /** Handles click of search button. Saves most recent search to localStorage and
@@ -89,5 +109,7 @@ $("#button_search").click(function()
 
   console.log(input); // Log value of search input to console.
 
-  // TODO: fetch sunrise/sunset data from OpenWeatherAPI
+  // Get coords from input and update sunrise/sunset times
+  let coords = cityToCoords(input);
+  updateTimes(coords[0], coords[1]);
 });
