@@ -36,12 +36,16 @@ function cityToCoords(city)
 {
   let url = OCD_GEOC_URL + "q=" + city + "&key=" + OCD_API_KEY;
 
-  let coords;
+  let coords = [1, 2];
   $.get(url, function(data)
   {
     console.log(data);
     // TODO: return coords[] ([0] = lat, [1] = long) from response
+    coords[0] = (data.results[0].geometry.lat);
+    coords[1] = (data.results[0].geometry.lng);
+    console.log(coords);
   });
+  console.log(coords);
   return coords;
 }
 
@@ -74,8 +78,13 @@ function loadRecent(currentPos)
   // Set #input_search value to lastSearch
   $("#input_search").val(lastSearch);
 
+  let hello = [0, 2, 3];
+  hello[3] = 4;
+  console.log(hello);
+
   // Get coords and update times
   let coords = cityToCoords(lastSearch);
+  console.log(coords);
   updateTimes(coords[0], coords[1]);
 }
 loadRecent(); // Load most recent search immediately upon site load
@@ -103,6 +112,10 @@ $("#button_search").click(function()
 {
   // Get input value from #input_search
   let input = $("#input_search").val();
+
+  // Return out if input is empty
+  if (input == "")
+    return;
 
   // Save most recent search to localStorage
   let storage = window.localStorage;
