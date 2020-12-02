@@ -4,17 +4,32 @@
   */
  let SS_API_URL = "https://api.sunrise-sunset.org/json?";
 
+ /** Attempt to get users location with HTML5 */
+ if (navigator.geolocation)
+ {
+   navigator.geolocation.getCurrentPosition(loadRecent); // Call loadRecent, passing location
+ }
+
 /** Loads the most recent search from localStorage and changes #input_search 's
 placeholder value to the most recent search */
-function loadRecent()
+function loadRecent(currentPos)
 {
   // Get most recent search from localStorage
   let storage = window.localStorage; // Reference localStorage
   let lastSearch = storage.getItem("lastSearch");
 
   // Verify a recent search exists
-  if (lastSearch === null) // If no recent search is saved lastRecent === null is true
+  if (lastSearch === null) // If no recent search is saved
+  {
+    if (currentPos === undefined) // If no access to users current location
+      return; // Return early, no need to go through rest of function
+
+    // Get users coordinates from location
+    let lat = currentPos.coords.latitude, long = currentPos.coords.longitude;
+
+    // TODO: fetch data using coordinates and populate screen with info
     return; // Return early, no need to go through rest of function
+  }
 
   // Set #input_search placeholder to lastSearch.
   $("#input_search").attr("placeholder", lastSearch);
