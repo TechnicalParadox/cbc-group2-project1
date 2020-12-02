@@ -34,7 +34,7 @@ function coordsToCity(lat, long)
 
 function cityToCoords(city)
 {
-  let url = OCD_GEOC_URL + "q=" + city + "&key" + OCD_API_KEY;
+  let url = OCD_GEOC_URL + "q=" + city + "&key=" + OCD_API_KEY;
 
   let coords;
   $.get(url, function(data)
@@ -71,8 +71,8 @@ function loadRecent(currentPos)
     return; // Return early, no need to go through rest of function
   }
 
-  // Set #input_search placeholder to lastSearch
-  $("#input_search").attr("placeholder", lastSearch);
+  // Set #input_search value to lastSearch
+  $("#input_search").val(lastSearch);
 
   // Get coords and update times
   let coords = cityToCoords(lastSearch);
@@ -89,6 +89,7 @@ function updateTimes(lat, long, date)
   else // If date is provided, use date in url
     url = SS_API_URL + "lat=" + lat + "&lng=" + long + "&date=" + date;
 
+  console.log(url);
   $.get(url, function(data)
   {
     console.log(data);
