@@ -27,6 +27,7 @@ if (navigator.geolocation)
 function cityToCoords(city)
 {
   let url = OCD_GEOC_URL + "q=" + city + "&key=" + OCD_API_KEY;
+  console.log("cityToCoords URL:", url);
 
   $.get(url, function(data)
   {
@@ -89,21 +90,21 @@ function updateTimes(lat, long, date)
   else // If date is provided, use date in url
     url = SS_API_URL + "lat=" + lat + "&lng=" + long + "&date=" + date;
 
-  console.log(url);
+  console.log("updateTimes URL:", url);
   $.get(url, function(data)
   {
     // Get UTC times from response
     let sunriseUTC = data.results.sunrise;
     let noonUTC = data.results.solar_noon;
     let sunsetUTC = data.results.sunset;
-    console.log(sunriseUTC, noonUTC, sunsetUTC);
+    console.log("UTC Times:", sunriseUTC, noonUTC, sunsetUTC);
 
     // Convert Times UTC -> Local
     let now = luxon.DateTime.fromJSDate(new Date()); // Create Luxon.DateTime object from current JS date
     let sunrise = utcToLocal(now, sunriseUTC);
     let noon = utcToLocal(now, noonUTC);
     let sunset = utcToLocal(now, sunsetUTC);
-    console.log(sunrise, noon, sunset);
+    console.log("Local Times:", sunrise, noon, sunset);
   });
 }
 
@@ -186,7 +187,7 @@ $("#button_search").click(function()
   let storage = window.localStorage;
   storage.setItem("lastSearch", input) // Input is saved under the key 'lastSearch'
 
-  console.log(input); // Log value of search input to console.
+  console.log("#input_search.val():", input); // Log value of search input to console.
 
   // Get coords from input and update sunrise/sunset times
   cityToCoords(input);
