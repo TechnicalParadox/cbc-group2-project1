@@ -35,6 +35,7 @@
 }
 
 /* Scroll cue start */
+
 .header-down-arrow {
   position: absolute;
     bottom: 1vh;
@@ -75,6 +76,5 @@
     pulse 2s 1.5s ease-out infinite;
   opacity: 0;
 }
-
 
 /* Scroll cue end */
