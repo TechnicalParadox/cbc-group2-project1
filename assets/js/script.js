@@ -105,6 +105,11 @@ function updateTimes(lat, long, date)
     let noon = utcToLocal(now, noonUTC);
     let sunset = utcToLocal(now, sunsetUTC);
     console.log("Local Times (24hr):", sunrise, noon, sunset);
+
+    // Display times
+    $("#time_sunrise").html(sunrise);
+    $("#time_noon").html(noon);
+    $("#time_sunset").html(sunset);
   });
 }
 
