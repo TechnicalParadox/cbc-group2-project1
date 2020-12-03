@@ -163,7 +163,7 @@ function utcToLocal (now, timeUTC)
     if (hour == 12)
       hour = 0;
   }
-  // If it is not AM, and not 12 PM, we add 12 hours, 7PM -> 19 (military hour)
+  // If it is not AM, and not 12 PM, we add 12 hours, ex. 7PM -> 19 (military hour)
   else
   {
     if (hour != 12)
@@ -188,7 +188,7 @@ $("#button_search").click(function()
   if (input == "")
     return;
 
-  // Save most recent search to localStorage
+  // Save most recent search to localStorage // TODO: save 5 most recent searches and list in recent search menu
   let storage = window.localStorage;
   storage.setItem("lastSearch", input) // Input is saved under the key 'lastSearch'
 
