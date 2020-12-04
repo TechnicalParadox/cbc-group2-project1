@@ -127,7 +127,10 @@ function updateTimes(lat, long, date)
  */
 function utcToLocal (now, timeUTC)
 {
-  let am = timeUTC.includes('AM') ? true : false; // short way to determine if AM or not
+  // THIS SHALL BE FOREVER IMMORTALIZED AS THE STUPIDEST THING I HAVE EVER DONE
+  // To make things better, it was originally a full if statement... - Tech
+  /* let am = timeUTC.includes('AM') ? true : false; // short way to determine if AM or not */
+  let am = timeUTC.includes('AM');
 
   let word = "", hour = 0, min = 0; // quick-init variables we need
   let phase = 0; // counter num to determine which section of the time is being processed
