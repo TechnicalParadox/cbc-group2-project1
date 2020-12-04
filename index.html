@@ -46,26 +46,26 @@
             Recent Searches
           </a>
 
-          <div class="navbar-dropdown">
-            <a class="navbar-item" id="navbar-itm-1">
+          <div class="navbar-dropdown has-background-black">
+            <a class="navbar-item has-text-white" id="navbar-itm-1">
               Philadelphia
             </a>
-            <a class="navbar-item" id="navbar-itm-2">
+            <a class="navbar-item has-text-white" id="navbar-itm-2">
               Boston
             </a>
-            <a class="navbar-item" id="navbar-itm-3">
+            <a class="navbar-item has-text-white" id="navbar-itm-3">
               Los Angeles
             </a>
-            <a class="navbar-item" id="navbar-itm-4">
+            <a class="navbar-item has-text-white" id="navbar-itm-4">
               Anchorage
             </a>
-            <a class="navbar-item" id="navbar-itm-5">
+            <a class="navbar-item has-text-white" id="navbar-itm-5">
               Addis Ababa
             </a>
-            <a class="navbar-item" id="navbar-itm-6">
+            <a class="navbar-item has-text-white" id="navbar-itm-6">
               Rome
             </a>
-            <a class="navbar-item" id="navbar-itm-7">
+            <a class="navbar-item has-text-white" id="navbar-itm-7">
               Tokyo
             </a>
           </div>
@@ -100,7 +100,7 @@
   <!-- hero section / main site section -->
   <section class="hero is-fullheight-with-navbar has-background-black">
     <div class="hero-body">
-      <div class="container">
+      <div class="container ">
         <h1 class="title center">
           My Time Sun Tracker
         </h1>
@@ -114,12 +114,54 @@
           <span class="has-text-danger hero-text">Sunset</span>!
         </p>
         <div id="times"> <!-- TODO: flex display -->
-          <p>Sunrise: <span id="time_sunrise" class="has-text-warning"></span></p>
-          <p>Solar Noon: <span id="time_noon" class="has-text-info"></span></p>
-          <p>Sunset: <span id="time_sunset" class="has-text-danger"></span></p>
+          <!-- <p>Sunrise: <span id="time_sunrise" class="has-text-warning"></span></p> -->
+          <!-- <p>Solar Noon: <span id="time_noon" class="has-text-info"></span></p> -->
+          <!-- <p>Sunset: <span id="time_sunset" class="has-text-danger"></span></p> -->
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- three columns to display sunrise/ noon / sunset -->
+  <section class="section has-background-black">
+    <div class="container">
+      <div class="columns mt-5 is-8 is-variable is-centered">
+        <div class="column is-4-tablet is-3-desktop">
+          <div class="card has-background-black">
+            <div class="card-image has-text-centered has-text-white px-6 ">
+              <img src="/assets/images/sunrise.png" alt="sunrise">
+            </div>
+            <div class="card-content has-text-centered" id="times">
+              <p class="has-text-warning">Sunrise</p>
+              <p><span id="time_sunrise" class="has-text-warning"></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="column is-4-tablet is-3-desktop">
+          <div class="card has-background-black">
+            <div class="card-image has-text-centered has-text-white px-6 ">
+              <img src="/assets/images/sun.png" alt="noon">
+            </div>
+            <div class="card-content has-text-centered" id="times">
+              <p class="has-text-info">Solar Noon</p>
+              <p><span id="time_noon" class="has-text-info"></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="column is-4-tablet is-3-desktop">
+          <div class="card has-background-black">
+            <div class="card-image has-text-centered has-text-white px-6 ">
+              <img src="/assets/images/sunset.png" alt="noon">
+            </div>
+            <div class="card-content has-text-centered" id="times">
+              <p class="has-text-danger">Sunset</p>
+              <p> <span id="time_sunset" class="has-text-danger"></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- search bar -->
@@ -142,6 +184,8 @@
   <!-- attribution to sunrise-sunset api, required by ToS that we provide link to site -->
   <footer class="has-background-black p-3">
     Powered by <a href="https://sunrise-sunset.org/api" target="_blank">Sunrise Sunset</a>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/iconixar" title="iconixar">iconixar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+
   </footer>
 
 

@@ -13,6 +13,10 @@
 .input::placeholder {
     color: white;
 }
+
+.navbar-item:hover {
+  background-color: hsl(348, 100%, 61%) !important;
+}
 /* .subtitle {
     white-space: nowrap;
 } */
