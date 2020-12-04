@@ -51,13 +51,13 @@ function loadRecent(currentPos)
 {
   // Get most recent search from localStorage
   let storage = window.localStorage; // Reference localStorage
-  let lastSearch = storage.getItem("lastSearch");
+  let lastSearch = storage.getItem("recentSearches"); // WARNING: value is not actually the lastSearch yet
 
   // Verify a recent search exists
   if (lastSearch === null) // If no recent search is saved
   {
     if (currentPos === undefined) // If no access to users current location
-    return; // Return early, no need to go through rest of function
+      return; // Return early, no need to go through rest of function
 
     // Get users coordinates from location and pass to update times
     let lat = currentPos.coords.latitude, long = currentPos.coords.longitude;
@@ -65,6 +65,9 @@ function loadRecent(currentPos)
 
     return; // Return early, no need to go through rest of function
   }
+
+  // Parse array of recentSearches from stringified data
+  lastSearch = (JSON.parse(lastSearch))[0]; // Value is now the lastSearch
 
   // Set #input_search value to lastSearch
   $("#input_search").val(lastSearch);
@@ -76,7 +79,7 @@ loadRecent(); // Load most recent search immediately upon site load
 
 /**
  * Updates the solar times using the new geolocation
- * @param  {String} lat  - the lattitude DD coord
+ * @param  {String} lat  - the lattitude DD coordinate
  * @param  {String} long - the longitude DD coordinate
  * @param  {// TODO:} date - in future will be used to check solar times of different dates
  * @return {undefined}
@@ -188,9 +191,24 @@ $("#button_search").click(function()
   if (input == "")
     return;
 
-  // Save most recent search to localStorage // TODO: save 5 most recent searches and list in recent search menu
+  // Load most recent searches array from localStorage (if any) and then save newest/possibly replace oldest
   let storage = window.localStorage;
-  storage.setItem("lastSearch", input) // Input is saved under the key 'lastSearch'
+  let recents = storage.getItem("recentSearches");
+  if (recents === null) // recentSearches does not exist, so we just save the recent and in future it will exist
+  {
+    recents = [input]; // Set recents to be an array with the input value
+    storage.setItem("recentSearches", JSON.stringify(recents)); // save stringified array to recentSearches
+  }
+  else // recent searches does exist, so we will maintain up to 10 recent searches
+  {
+    recents = JSON.parse(recents); // parse existing recents into array
+    recents.unshift(input); // add newest search to the front of storage
+
+    // maintain up to 10 recents by popping once we get to the 11th
+    if (recents.length > 10)
+      recents.pop();
+    storage.setItem("recentSearches", JSON.stringify(recents)); // save updated recents to localStorage
+  }
 
   console.log("#input_search.val():", input); // Log value of search input to console.
 
