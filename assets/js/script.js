@@ -177,6 +177,8 @@ function utcToLocal (now, timeUTC)
   // returns it as local time.
   let utcTime = luxon.DateTime.utc(now.year, now.month, now.day, hour, min);
   let localTime = utcTime.toLocal();
+  // We prefix the hour and minute with a '0', potentially turning 12 into 012,
+  // but we only keep the last 2 digits, ensuring that hour '9' displays at '09', etc.
   return ("0"+localTime.hour).slice(-2) + ":" + ("0"+localTime.minute).slice(-2);
 }
 
