@@ -2,6 +2,7 @@
 
 ## Credits
 [Sunrise Sunset API](https://sunrise-sunset.org/api)
+
 [OpenCage API](https://opencagedata.com/api)
 
 ## Project Requirements
