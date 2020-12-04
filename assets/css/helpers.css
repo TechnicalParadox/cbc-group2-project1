@@ -14,9 +14,17 @@
     color: white;
 }
 
+input:focus::placeholder {
+  color: transparent;
+}
+
 .navbar-item:hover {
   background-color: hsl(348, 100%, 61%) !important;
 }
+
+/* .navbar-item.left:hover {
+  background-color: hsl(48, 100%, 67%);
+} */
 /* .subtitle {
     white-space: nowrap;
 } */

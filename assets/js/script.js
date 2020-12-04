@@ -13,6 +13,21 @@ const SS_API_URL = "https://api.sunrise-sunset.org/json?";
 const OCD_GEOC_URL = "https://api.opencagedata.com/geocode/v1/json?";
 const OCD_API_KEY = "1758919effee418b9b3316a3343b24df";
 
+/** 
+ * When burger appears in navbar on smaller screen sizes this will make the burger functional 
+ */
+const burgerButton = document.querySelector("#burger-bar");
+const navbarMenu = document.querySelector(".navbar-menu");
+
+burgerButton.addEventListener('click', () => {
+  navbarMenu.classList.toggle('is-active');
+});
+
+
+
+
+
+
 /** Attempt to get users location with HTML5 */
 if (navigator.geolocation)
 {
