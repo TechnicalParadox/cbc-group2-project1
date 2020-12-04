@@ -49,11 +49,13 @@ function cityToCoords(city)
 */
 function loadRecent(currentPos)
 {
+  // TODO: should populate recent searches navbar dropdown
+
   // Get most recent search from localStorage
   let storage = window.localStorage; // Reference localStorage
   let lastSearch = storage.getItem("recentSearches"); // WARNING: value is not actually the lastSearch yet
 
-  // Verify a recent search exists
+  // Verify a recent search exists // TODO: simplify this function by removing currentPos parameter
   if (lastSearch === null) // If no recent search is saved
   {
     if (currentPos === undefined) // If no access to users current location
