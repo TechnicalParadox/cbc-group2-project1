@@ -202,6 +202,15 @@ $("#button_search").click(function()
   else // recent searches does exist, so we will maintain up to 10 recent searches
   {
     recents = JSON.parse(recents); // parse existing recents into array
+
+    // Clear previous entries that are the same search to prevent duplicates
+    let alreadyIn = $.inArray(input, recents);
+    if (alreadyIn != -1)
+    {
+      // We splice out the old entry, because the new one will be added to front
+      recents.splice(alreadyIn, 1);
+    }
+
     recents.unshift(input); // add newest search to the front of storage
 
     // maintain up to 10 recents by popping once we get to the 11th
