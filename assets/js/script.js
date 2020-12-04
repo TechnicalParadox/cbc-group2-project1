@@ -119,9 +119,11 @@ function updateTimes(lat, long, date)
 }
 
 /**
- * [utcToLocal description]
+ * Converts time from UTC (12hr) to Local (24hr)
  * @param  {Luxon.DateTime} now     - set to today, necessary to ensure proper
- *                                    conversion during all times of year (DST)
+ *                                    conversion during all times of year (DST).
+ *                                    It's passed so that we don't have to create
+ *                                    a DateTime object for every conversion.
  * @param  {String} timeUTC         - (H:M***AM/PM) the time to convert to local
  * @return {String}                 - the converted local time (0-23:0-59)
  */
