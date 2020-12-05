@@ -229,7 +229,7 @@ function populateRecents()
     recents = JSON.parse(recents); // parse existing recents into array
     for (let s of recents)
     {
-      let search = '<a class="navbar-item has-text-white" id="navbar-itm-3">' +
+      let search = '<a id="recent-search" class="navbar-item has-text-white" id="navbar-itm-3">' +
         s + "</div>";
       recentListDiv.append(search);
     }
@@ -283,4 +283,14 @@ $("#button_search").click(function()
 
   // Get coords from input and update sunrise/sunset times
   cityToCoords(input);
+});
+
+/** Handles click on item in recent seraches menu, runs new search */
+$("#dropdown-recents").on('click', '#recent-search', function()
+{
+  let search = $(this).html();
+  // Update search bar
+  $("#input_search").val(search);
+  // Get coords from input and update sunrise/sunset times
+  cityToCoords(search);
 });
