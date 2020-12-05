@@ -216,13 +216,13 @@ function populateRecents()
   // Load recents from localStorage
   let storage = window.localStorage;
   let recents = storage.getItem("recentSearches");
-
   // recentSearches does not exist, so we disable recents menu
   if (recents === null)
   {
     recentListDD.hide();
   }
   // Otherwise, parse recents and populate dropdown
+  else
   {
     recentListDD.show();
 
