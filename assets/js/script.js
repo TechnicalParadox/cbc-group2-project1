@@ -13,8 +13,8 @@ const SS_API_URL = "https://api.sunrise-sunset.org/json?";
 const OCD_GEOC_URL = "https://api.opencagedata.com/geocode/v1/json?";
 const OCD_API_KEY = "1758919effee418b9b3316a3343b24df";
 
-/* 
- * When burger appears in navbar on smaller screen sizes this will make the burger functional 
+/*
+ * When burger appears in navbar on smaller screen sizes this will make the burger functional
  */
 const burgerButton = document.querySelector("#burger-bar");
 const navbarMenu = document.querySelector(".navbar-menu");
@@ -206,6 +206,37 @@ function utcToLocal (now, timeUTC)
   return ("0"+localTime.hour).slice(-2) + ":" + ("0"+localTime.minute).slice(-2);
 }
 
+function populateRecents()
+{
+  let recentListDiv = $("#dropdown-recents");
+  recentListDiv.empty(); // Empty the existing menu
+
+  let recentListDD = $("#searched-cities");
+
+  // Load recents from localStorage
+  let storage = window.localStorage;
+  let recents = storage.getItem("recentSearches");
+
+  // recentSearches does not exist, so we disable recents menu
+  if (recents === null)
+  {
+    recentListDD.hide();
+  }
+  // Otherwise, parse recents and populate dropdown
+  {
+    recentListDD.show();
+
+    recents = JSON.parse(recents); // parse existing recents into array
+    for (let s of recents)
+    {
+      let search = '<a class="navbar-item has-text-white" id="navbar-itm-3">' +
+        s + "</div>";
+      recentListDiv.append(search);
+    }
+  }
+}
+populateRecents(); // Populate recents menu immediately upon load
+
 /** Handles click of search button. Saves most recent search to localStorage and
 fetches relevant data from API */
 $("#button_search").click(function()
@@ -244,6 +275,9 @@ $("#button_search").click(function()
       recents.pop();
     storage.setItem("recentSearches", JSON.stringify(recents)); // save updated recents to localStorage
   }
+
+  // Populate recents menu
+  populateRecents();
 
   console.log("#input_search.val():", input); // Log value of search input to console.
 
