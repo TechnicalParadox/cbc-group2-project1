@@ -43,15 +43,32 @@ function loadSwitchStates()
     $("#switch-civ-time").find("div").find("input").prop("checked", true);
     $("#span-type-time").addClass("has-text-warning").html("Civilian");
   }
+  else
+  {
+    $("#switch-civ-time").find("div").find("input").prop("checked", false);
+    $("#span-type-time").removeClass("has-text-warning").html("Military");
+  }
+
   if (timezone == "true")
   {
     $("#switch-search-timezone").find("div").find("input").prop("checked", true);
     $("#span-timezone").addClass("has-text-info").html("Searched");
   }
+  else
+  {
+    $("#switch-search-timezone").find("div").find("input").prop("checked", false);
+    $("#span-timezone").removeClass("has-text-info").html("Local");
+  }
+
   if (location == "true")
   {
     $("#switch-html5-location").find("div").find("input").prop("checked", true);
     $("#span-location").addClass("has-text-danger").html("On");
+  }
+  else
+  {
+    $("#switch-html5-location").find("div").find("input").prop("checked", false);
+    $("#span-location").removeClass("has-text-danger").html("Off");
   }
 }
 loadSwitchStates();
@@ -399,4 +416,6 @@ $(".field").on('click', '.switch', function()
     default:
       console.log("error");
   }
+
+  loadSwitchStates(); // Make sure switches are updated
 })
