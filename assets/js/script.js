@@ -379,21 +379,21 @@ $(".field").on('click', '.switch', function()
   console.log($(this).parent().find("span").attr("id"));
 
   // Get spanID from switch label to indentify switch and get checked value
-  let spanID = $(this).parent().find("span").attr("id");
+  let switchID = $(this).parent().parent().attr('id');
   let switchVal = $(this).prop("checked")
 
   // Save switch state to localStorage after indentifying switch by spanID
   // and make changes to page as needed
   let storage = window.localStorage;
-  switch (spanID)
+  switch (switchID)
   {
-    case "span-type-time": // Military/Civilian toggle switch
+    case "switch-civ-time": // Military/Civilian toggle switch
       storage.setItem("type-time", switchVal);
       break;
-    case "span-timezone": // Local/Search timezone switch
+    case "switch-search-timezone": // Local/Search timezone switch
       storage.setItem("timezone", switchVal); // TODO:
       break;
-    case "span-location": // Use users location switch
+    case "switch-html5-location": // Use users location switch
       storage.setItem("location", switchVal); // TODO:
       break;
     default:
