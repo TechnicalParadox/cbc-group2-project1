@@ -33,7 +33,7 @@
         <span class="ml-2">My-Time-Sun-Tracker</span>
       </a>
 
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="searched-cities" id="burger-bar">
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar" id="burger-bar">
         <span></span>
         <span></span>
         <span></span>
@@ -41,10 +41,9 @@
     </div>
 
 
-    <div class="navbar-start has-background-black">
-      <div id="searched-cities" class="navbar-menu has-background-black">
-
-        <div class="navbar-item has-dropdown has-background-black is-hoverable">
+    <div id="navbar" class="navbar-menu has-background-black">
+      <div class="navbar-start">
+        <div id="searched-cities" class="navbar-item has-dropdown has-background-black is-hoverable">
           <a class="navbar-link  has-background-black" id="city-dropdown">
             Recent Searches
           </a>
@@ -76,27 +75,26 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="navbar-end">
+      <div class="navbar-end">
 
-      <a class="navbar-item" href="https://github.com/TechnicalParadox/cbc-group2-project1" target="_blank">
-        Github
-        <span class="ml-2"><i class="fab fa-github"></i></span>
-      </a>
-
-      <div class="navbar-item has-background-black has-dropdown is-hoverable">
-        <a class="navbar-link  has-background-black">
-          About Us
+        <a class="navbar-item" href="https://github.com/TechnicalParadox/cbc-group2-project1" target="_blank">
+          Github
+          <span class="ml-2"><i class="fab fa-github"></i></span>
         </a>
 
-        <div class="navbar-dropdown has-background-black" id="about-us-dropdown">
-          <a class="navbar-item has-text-white" id="navbar-itm-1" href="https://technicalparadox.github.io/" target="_blank">
-            Giamo Lao
+        <div class="navbar-item has-background-black has-dropdown is-hoverable">
+          <a class="navbar-link  has-background-black">
+            About Us
           </a>
-          <a class="navbar-item has-text-white" id="navbar-itm-2"  href="https://gintstir.github.io/Portfolio/">
-            Gint Stirbys
-          </a>
+
+          <div class="navbar-dropdown has-background-black" id="about-us-dropdown">
+            <a class="navbar-item has-text-white" id="navbar-itm-1" href="https://technicalparadox.github.io/" target="_blank">
+              Giamo Lao
+            </a>
+            <a class="navbar-item has-text-white" id="navbar-itm-2"  href="https://gintstir.github.io/Portfolio/">
+              Gint Stirbys
+            </a>
           </div>
         </div>
       </div>
