@@ -29,7 +29,6 @@ burgerButton.addEventListener('click', () => {
 
 
 
-
 /** Attempt to get users location with HTML5 */
 if (navigator.geolocation)
 {
@@ -95,6 +94,38 @@ function loadRecent(currentPos)
   let coords = cityToCoords(lastSearch);
 }
 loadRecent(); // Load most recent search immediately upon site load
+
+/** Populates the recent searches menu. If there are no recent searches then the menu is hidden. */
+function populateRecents()
+{
+  let recentListDiv = $("#dropdown-recents");
+  recentListDiv.empty(); // Empty the existing menu
+
+  let recentListDD = $("#searched-cities");
+
+  // Load recents from localStorage
+  let storage = window.localStorage;
+  let recents = storage.getItem("recentSearches");
+  // recentSearches does not exist, so we hide recents menu
+  if (recents === null)
+  {
+    recentListDD.hide();
+  }
+  // Otherwise, parse recents and populate dropdown
+  else
+  {
+    recentListDD.show(); // Make sure is shown the dropdown menu (in case previously hidden)
+
+    recents = JSON.parse(recents); // parse existing recents into array
+    for (let s of recents) // Go through each recent search and ad to dropdown
+    {
+      let search = '<a id="recent-search" class="navbar-item has-text-white" id="navbar-itm-3">' +
+        s + "</div>";
+      recentListDiv.append(search);
+    }
+  }
+}
+populateRecents(); // Populate recents menu immediately upon load
 
 /**
  * Updates the solar times using the new geolocation
@@ -205,37 +236,6 @@ function utcToLocal (now, timeUTC)
   // but we only keep the last 2 digits, ensuring that hour '9' displays at '09', etc.
   return ("0"+localTime.hour).slice(-2) + ":" + ("0"+localTime.minute).slice(-2);
 }
-
-function populateRecents()
-{
-  let recentListDiv = $("#dropdown-recents");
-  recentListDiv.empty(); // Empty the existing menu
-
-  let recentListDD = $("#searched-cities");
-
-  // Load recents from localStorage
-  let storage = window.localStorage;
-  let recents = storage.getItem("recentSearches");
-  // recentSearches does not exist, so we disable recents menu
-  if (recents === null)
-  {
-    recentListDD.hide();
-  }
-  // Otherwise, parse recents and populate dropdown
-  else
-  {
-    recentListDD.show();
-
-    recents = JSON.parse(recents); // parse existing recents into array
-    for (let s of recents)
-    {
-      let search = '<a id="recent-search" class="navbar-item has-text-white" id="navbar-itm-3">' +
-        s + "</div>";
-      recentListDiv.append(search);
-    }
-  }
-}
-populateRecents(); // Populate recents menu immediately upon load
 
 /** Handles click of search button. Saves most recent search to localStorage and
 fetches relevant data from API */
