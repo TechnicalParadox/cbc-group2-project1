@@ -213,7 +213,8 @@ function updateTimes(lat, long, date)
     }
 
     // Display times
-    $("#time_sunrise").html(sunrise);
+    $("#time_sunrise_desktop").html(sunrise);
+    $("#time_sunrise_mobile").html(sunrise);
     $("#time_noon").html(noon);
     $("#time_sunset").html(sunset);
   });
@@ -468,7 +469,7 @@ $(".field").on('click', '.switch', function()
 function updateExistingTimes(toCiv)
 {
   // Pull existing times
-  let sunrise = $("#time_sunrise").html().trim();
+  let sunrise = $("#time_sunrise_desktop").html().trim();
   let noon = $("#time_noon").html().trim();
   let sunset = $("#time_sunset").html().trim();
 
@@ -489,7 +490,8 @@ function updateExistingTimes(toCiv)
   }
 
   // Display updated times
-  $("#time_sunrise").html(sunrise);
+  $("#time_sunrise_desktop").html(sunrise);
+  $("#time_sunrise_mobile").html(sunrise);
   $("#time_noon").html(noon);
   $("#time_sunset").html(sunset);
 }
