@@ -76,8 +76,7 @@ input:focus::placeholder {
 	}
 }
 /* card positioning */
-#times-sunrise {
-}
+
 
 /* Search section */
 .search {
@@ -93,7 +92,7 @@ input:focus::placeholder {
     left: 0;
     right: 0;
   text-align: center;
-  z-index: 10;
+  z-index: 1;
 }
 
 @keyframes fade-slide-up {
@@ -129,7 +128,7 @@ input:focus::placeholder {
 }
 
 /* Scroll cue end */
-
+/* 
 #times-sunrise {
 
 }
@@ -140,4 +139,4 @@ input:focus::placeholder {
 
 #times-sunset {
 
-}
+} */
