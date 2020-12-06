@@ -57,7 +57,7 @@ function loadSwitchStates()
   else
   {
     $("#switch-search-timezone").find("div").find("input").prop("checked", false);
-    $("#span-timezone").removeClass("has-text-info").html("Local");
+    $("#span-timezone").removeClass("has-text-info").html("Your");
   }
 
   if (location == "true")
