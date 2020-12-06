@@ -75,6 +75,9 @@ input:focus::placeholder {
 		font-size: 90%;
 	}
 }
+/* card positioning */
+#times-sunrise {
+}
 
 /* Search section */
 .search {

@@ -109,68 +109,80 @@
   <!-- hero section / main site section -->
   <section class="hero is-fullheight-with-navbar has-background-black">
     <div class="hero-body">
-      <div class="container ">
-        <h1 class="title center">
-          My Time Sun Tracker
-        </h1>
-        <br>
-        <p class="subtitle center">
-          A simple app to find what solar times are in your local time.
-        </p>
-        <p class= "subtitle center"> <!-- Displays "Sunrise / Sunset" -->
-          <span class="has-text-warning hero-text">Sunrise</span>
-          &nbsp / &nbsp
-          <span class="has-text-danger hero-text">Sunset</span>!
-        </p>
-        <div id="times"> <!-- TODO: flex display -->
-          <!-- <p>Sunrise: <span id="time_sunrise" class="has-text-warning"></span></p> -->
-          <!-- <p>Solar Noon: <span id="time_noon" class="has-text-info"></span></p> -->
-          <!-- <p>Sunset: <span id="time_sunset" class="has-text-danger"></span></p> -->
-        </div>
-      </div>
+        <div class="container">
+            <div class="columns is-hidden-desktop">
+                <div class="column is-4 is-offset-4">
+                    <div class="card has-background-black has-text-centered">
+                        <h1 class="title center">
+                            My-Time <br>Sun-Tracker
+                        </h1>
+                        <br>
+                        <p class="subtitle center">
+                            A simple app to find what solar times are in your local time.
+                        </p>
+                        <p class="subtitle center">
+                            <!-- Displays "Sunrise / Sunset" -->
+                            <span class="has-text-warning hero-text">Sunrise</span>
+                            &nbsp / &nbsp
+                            <span class="has-text-danger hero-text">Sunset</span>!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="columns is-2-mobile">
+                <div class="column is-4 is-offset-4">
+                    <div class="card has-background-black">
+                        <div class="card-image has-text-centered has-text-white px-6 ">
+                          <img src="assets\images\sun.png" alt="noon">
+                        </div>
+                        <div class="card-content has-text-centered" id="times-noon">
+                          <p class="has-text-info">Solar Noon</p>
+                          <p><span id="time_noon" class="has-text-info"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns is-2-mobile">
+                <div class="column is-4">
+                    <div class="card has-background-black">
+                        <div class="card-image has-text-centered has-text-white px-6 ">
+                            <img src="assets\images\sunrise.png" alt="sunrise">
+                        </div>
+                        <div class="card-content has-text-centered" id="times-sunrise">
+                            <p class="has-text-warning">Sunrise</p>
+                            <p><span id="time_sunrise" class="has-text-warning"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class=" column is-4">
+                    <div class="card has-background-black has-text-centered is-hidden-mobile">
+                        <h1 class="title center has-text-warning">
+                            My-Time                            
+                        </h1>
+                        <h1 class="title center has-text-danger">
+                          Sunrise / Sunset Tracker                            
+                      </h1>
+                        <br>
+                        <p class="subtitle center">
+                            A simple app to find solar times in your local time.
+                        </p>
+                        
+                    </div>
+                </div>                   
+                <div class="column is-4">
+                    <div class="card has-background-black">
+                        <div class="card-image has-text-centered has-text-white px-6 ">
+                            <img src="assets\images\sunset.png" alt="sunset">
+                        </div>
+                        <div class="card-content has-text-centered" id="times-sunset">
+                            <p class="has-text-danger">Sunset</p>
+                            <p> <span id="time_sunset" class="has-text-danger"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>            
     </div>
-  </section>
-
-  <!-- three columns to display sunrise/ noon / sunset -->
-  <section class="section has-background-black">
-    <div class="container">
-      <div class="columns mt-5 is-8 is-variable is-centered">
-        <div class="column is-4-tablet is-3-desktop">
-          <div class="card has-background-black">
-            <div class="card-image has-text-centered has-text-white px-6 ">
-              <img src="assets\images\sunrise.png" alt="sunrise">
-            </div>
-            <div class="card-content has-text-centered" id="times-sunrise">
-              <p class="has-text-warning">Sunrise</p>
-              <p><span id="time_sunrise" class="has-text-warning"></span></p>
-            </div>
-          </div>
-        </div>
-        <div class="column is-4-tablet is-3-desktop">
-          <div class="card has-background-black">
-            <div class="card-image has-text-centered has-text-white px-6 ">
-              <img src="assets\images\sun.png" alt="noon">
-            </div>
-            <div class="card-content has-text-centered" id="times-noon">
-              <p class="has-text-info">Solar Noon</p>
-              <p><span id="time_noon" class="has-text-info"></span></p>
-            </div>
-          </div>
-        </div>
-        <div class="column is-4-tablet is-3-desktop">
-          <div class="card has-background-black">
-            <div class="card-image has-text-centered has-text-white px-6 ">
-              <img src="assets\images\sunset.png" alt="sunset">
-            </div>
-            <div class="card-content has-text-centered" id="times-sunset">
-              <p class="has-text-danger">Sunset</p>
-              <p> <span id="time_sunset" class="has-text-danger"></span></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </section>
 
   <!-- search bar -->
