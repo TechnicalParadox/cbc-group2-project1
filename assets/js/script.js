@@ -28,6 +28,33 @@ burgerButton.addEventListener('click', () => {
 
 
 
+// Load switch states on page load
+function loadSwitchStates()
+{
+  // Get states from localStorage
+  let storage = window.localStorage;
+
+  let timeType = storage.getItem("type-time");
+  let timezone = storage.getItem("timezone");
+  let location = storage.getItem("location");
+
+  if (timeType == "true")
+  {
+    $("#switch-civ-time").find("div").find("input").prop("checked", true);
+    $("#span-type-time").addClass("has-text-warning").html("Civilian");
+  }
+  if (timezone == "true")
+  {
+    $("#switch-search-timezone").find("div").find("input").prop("checked", true);
+    $("#span-timezone").addClass("has-text-info").html("Searched");
+  }
+  if (location == "true")
+  {
+    $("#switch-html5-location").find("div").find("input").prop("checked", true);
+    $("#span-location").addClass("has-text-danger").html("On");
+  }
+}
+loadSwitchStates();
 
 /** Attempt to get users location with HTML5 */
 if (navigator.geolocation)
@@ -159,6 +186,15 @@ function updateTimes(lat, long, date)
     let sunset = utcToLocal(now, sunsetUTC);
     console.log("Local Times (24hr):", sunrise, noon, sunset);
 
+    // Check if user wants times displayed in civilian time and convert if so
+    let storage = window.localStorage;
+    if (storage.getItem("type-time") == "true")
+    {
+      sunrise = milToCiv(sunrise);
+      noon = milToCiv(noon);
+      sunset = milToCiv(sunset);
+    }
+
     // Display times
     $("#time_sunrise").html(sunrise);
     $("#time_noon").html(noon);
@@ -237,6 +273,48 @@ function utcToLocal (now, timeUTC)
   return ("0"+localTime.hour).slice(-2) + ":" + ("0"+localTime.minute).slice(-2);
 }
 
+/**
+ * Converts military time into civilian time
+ * @param  {String} time - The time in military time
+ * @return {String}      - The time in civilian time
+ */
+function milToCiv(time)
+{
+  // Get hour/minute from military time
+  let hour, minute;
+  let segment = "";
+  for (let c of time) // For each character in time
+  {
+    if (c == ":")
+    {
+      hour = segment;
+      segment = "";
+    }
+    else
+      segment += c;
+  }
+  minute = segment;
+
+  // Convert hour from military to civilian
+  let hourNum = parseInt(hour);
+  let amPM;
+  if (hourNum >= 12)
+  {
+    amPM = " PM";
+    if (hourNum != 12)
+      hourNum -= 12;
+  }
+  else
+  {
+    amPM = " AM";
+    if (hourNum == 0)
+      hourNum += 12;
+  }
+  hour = hourNum;
+
+  return (hourNum + ":" + minute + amPM);
+}
+
 /** Handles click of search button. Saves most recent search to localStorage and
 fetches relevant data from API */
 $("#button_search").click(function()
@@ -305,6 +383,7 @@ $(".field").on('click', '.switch', function()
   let switchVal = $(this).prop("checked")
 
   // Save switch state to localStorage after indentifying switch by spanID
+  // and make changes to page as needed
   let storage = window.localStorage;
   switch (spanID)
   {
@@ -312,10 +391,10 @@ $(".field").on('click', '.switch', function()
       storage.setItem("type-time", switchVal);
       break;
     case "span-timezone": // Local/Search timezone switch
-      storage.setItem("timezone", switchVal);
+      storage.setItem("timezone", switchVal); // TODO:
       break;
     case "span-location": // Use users location switch
-      storage.setItem("location", switchVal);
+      storage.setItem("location", switchVal); // TODO:
       break;
     default:
       console.log("error");
