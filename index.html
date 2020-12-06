@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,8 @@
   <title>Sunrise-Sunset-App</title> <!-- TODO: update title -->
   <!-- cdn for bulma.io -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css"
-  integrity="sha512-ZRv40llEogRmoWgZwnsqke3HNzJ0kiI0+pcMgiz2bxO6Ew1DVBtWjVn0qjrXdT3+u+pSN36gLgmJiiQ3cQtyzA=="
-  crossorigin="anonymous"/>
+    integrity="sha512-ZRv40llEogRmoWgZwnsqke3HNzJ0kiI0+pcMgiz2bxO6Ew1DVBtWjVn0qjrXdT3+u+pSN36gLgmJiiQ3cQtyzA=="
+    crossorigin="anonymous" />
   <!-- cdn for font awesome -->
   <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
   <!-- cdn for Bulma extension css -->
@@ -25,6 +26,7 @@
   </section>
 
 </head>
+
 <body>
   <!-- Modal that lauches on page load with time format and search type switches -->
 
@@ -38,7 +40,8 @@
         <span class="ml-2">My-Time-Sun-Tracker</span>
       </a>
 
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar" id="burger-bar">
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar"
+        id="burger-bar">
         <span></span>
         <span></span>
         <span></span>
@@ -94,10 +97,11 @@
           </a>
 
           <div class="navbar-dropdown has-background-black" id="about-us-dropdown">
-            <a class="navbar-item has-text-white" id="navbar-itm-1" href="https://technicalparadox.github.io/" target="_blank">
+            <a class="navbar-item has-text-white" id="navbar-itm-1" href="https://technicalparadox.github.io/"
+              target="_blank">
               Giamo Lao
             </a>
-            <a class="navbar-item has-text-white" id="navbar-itm-2"  href="https://gintstir.github.io/Portfolio/">
+            <a class="navbar-item has-text-white" id="navbar-itm-2" href="https://gintstir.github.io/Portfolio/">
               Gint Stirbys
             </a>
           </div>
@@ -109,76 +113,89 @@
   <!-- hero section / main site section -->
   <section class="hero is-fullheight-with-navbar has-background-black">
     <div class="hero-body">
-        <div class="container">
-            <div class="columns is-hidden-desktop">
-                <div class="column is-4 is-offset-4">
-                    <div class="card has-background-black has-text-centered">
-                        <h1 class="title center has-text-warning">
-                          My-Time                            
-                      </h1>
-                      <h1 class="title center has-text-danger">
-                        Sunrise / Sunset Tracker                            
-                      </h1>
-                      <br>
-                      <p class="subtitle center">
-                          A simple app to find solar times in your local time.
-                      </p>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="columns is-hidden-desktop">
+          <div class="column is-4 is-offset-4">
+            <div class="card has-background-black has-text-centered">
+              <h1 class="title center has-text-warning">
+                My-Time
+              </h1>
+              <h1 class="title center has-text-danger">
+                Sunrise / Sunset Tracker
+              </h1>
+              <br>
+              <p class="subtitle center">
+                A simple app to find solar times in your local time.
+              </p>
             </div>
-            <div class="columns is-2-mobile">
-                <div class="column is-4 is-offset-4">
-                    <div class="card has-background-black">
-                        <div class="card-image has-text-centered has-text-white px-6 ">
-                          <img src="assets\images\sun.png" alt="noon">
-                        </div>
-                        <div class="card-content has-text-centered" id="times-noon">
-                          <p class="has-text-info is-size-3-mobile">Solar Noon</p>
-                          <p><span id="time_noon" class="has-text-info has-text-weight-medium"></span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="columns is-2-mobile">
-                <div class="column is-4">
-                    <div class="card has-background-black">
-                        <div class="card-image is-24X24 has-text-centered has-text-white px-6 ">
-                            <img src="assets\images\sunrise.png" alt="sunrise">
-                        </div>
-                        <div class="card-content has-text-centered" id="times-sunrise">
-                            <p class="has-text-warning is-size-3-mobile">Sunrise</p>
-                            <p><span id="time_sunrise" class="has-text-warning has-text-weight-medium"></span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class=" column is-4">
-                    <div class="card has-background-black has-text-centered is-hidden-touch">
-                        <h1 class="title center has-text-warning">
-                            My-Time
-                        </h1>
-                        <h1 class="title center has-text-danger">
-                          Sunrise / Sunset Tracker
-                      </h1>
-                        <br>
-                        <p class="subtitle center">
-                            A simple app to find solar times in your local time.
-                        </p>
-
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="card has-background-black">
-                        <div class="card-image has-text-centered has-text-white px-6 ">
-                            <img src="assets\images\sunset.png" alt="sunset">
-                        </div>
-                        <div class="card-content has-text-centered" id="times-sunset">
-                            <p class="has-text-danger is-size-3-mobile">Sunset</p>
-                            <p> <span id="time_sunset" class="has-text-danger has-text-weight-medium"></span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="columns is-hidden-desktop">        
+          <div class="column is-4 is-offset-4">
+            <div class="card has-background-black">
+              <div class="card-image is-24X24 has-text-centered has-text-white px-6 ">
+                <img src="assets\images\sunrise.png" alt="sunrise">
+              </div>
+              <div class="card-content has-text-centered" id="times-sunrise">
+                <p class="has-text-warning is-size-3-mobile">Sunrise</p>
+                <p><span id="time_sunrise" class="has-text-warning has-text-weight-medium"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="columns is-2-mobile">
+          <div class="column is-4 is-offset-4">
+            <div class="card has-background-black">
+              <div class="card-image has-text-centered has-text-white px-6 ">
+                <img src="assets\images\sun.png" alt="noon">
+              </div>
+              <div class="card-content has-text-centered" id="times-noon">
+                <p class="has-text-info is-size-3-mobile">Solar Noon</p>
+                <p><span id="time_noon" class="has-text-info has-text-weight-medium"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="columns is-2-mobile">
+          <div class="column is-4 is-hidden-touch">
+            <div class="card has-background-black">
+              <div class="card-image is-24X24 has-text-centered has-text-white px-6 ">
+                <img src="assets\images\sunrise.png" alt="sunrise">
+              </div>
+              <div class="card-content has-text-centered" id="times-sunrise">
+                <p class="has-text-warning is-size-3-mobile">Sunrise</p>
+                <p><span id="time_sunrise" class="has-text-warning has-text-weight-medium"></span></p>
+              </div>
+            </div>
+          </div>
+          <div class=" column is-4">
+            <div class="card has-background-black has-text-centered is-hidden-touch">
+              <h1 class="title center has-text-warning">
+                My-Time
+              </h1>
+              <h1 class="title center has-text-danger">
+                Sunrise / Sunset Tracker
+              </h1>
+              <br>
+              <p class="subtitle center">
+                A simple app to find solar times in your local time.
+              </p>
+
+            </div>
+          </div>
+          <div class="column is-4">
+            <div class="card has-background-black">
+              <div class="card-image has-text-centered has-text-white px-6 ">
+                <img src="assets\images\sunset.png" alt="sunset">
+              </div>
+              <div class="card-content has-text-centered" id="times-sunset">
+                <p class="has-text-danger is-size-3-mobile">Sunset</p>
+                <p> <span id="time_sunset" class="has-text-danger has-text-weight-medium"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -187,7 +204,8 @@
     <div class="container">
       <div class="field">
         <div class="control center">
-          <input id="input_search" class="input is-warning is-rounded" type="text" style="max-width: 512px;" placeholder="Search for 'City, ST' or 'ZIP, Country'">
+          <input id="input_search" class="input is-warning is-rounded" type="text" style="max-width: 512px;"
+            placeholder="Search for 'City, ST' or 'ZIP, Country'">
           <button id="button_search" class="button is-danger is-outlined is-rounded ml-2">
             <span class="icon is-small">
               <i class="fas fa-sun"></i>
@@ -202,7 +220,8 @@
         <div id="switch-civ-time" class="column">
           <div class="field">
             <!-- <label for="switchRoundedOutlinedWarning">On: 12h format Off: 24h format</label> -->
-            <input id="switchRoundedOutlinedWarning" type="checkbox" name="switchRoundedOutlinedWarning" class="switch is-rounded is-outlined is-warning">
+            <input id="switchRoundedOutlinedWarning" type="checkbox" name="switchRoundedOutlinedWarning"
+              class="switch is-rounded is-outlined is-warning">
             <label for="switchRoundedOutlinedWarning">
               <br>Using <span id="span-type-time">Military</span> Time
             </label>
@@ -210,7 +229,8 @@
         </div>
         <div id="switch-search-timezone" class="column">
           <div class="field">
-            <input id="switchRoundedOutlinedInfo" type="checkbox" name="switchRoundedOutlinedInfo" class="switch is-rounded is-outlined is-info">
+            <input id="switchRoundedOutlinedInfo" type="checkbox" name="switchRoundedOutlinedInfo"
+              class="switch is-rounded is-outlined is-info">
             <label for="switchRoundedOutlinedInfo">
               <br>Using <span id="span-timezone">Local</span> Timezone
             </label>
@@ -218,7 +238,8 @@
         </div>
         <div id="switch-html5-location" class="column">
           <div class="field">
-            <input id="switchRoundedOutlinedDanger" type="checkbox" name="switchRoundedOutlinedDanger" class="switch is-rounded is-outlined is-danger">
+            <input id="switchRoundedOutlinedDanger" type="checkbox" name="switchRoundedOutlinedDanger"
+              class="switch is-rounded is-outlined is-danger">
             <label for="switchRoundedOutlinedDanger">
               <br>Autolocation <span id="span-location">Off</span>
             </label>
@@ -237,7 +258,8 @@
         Powered by <a href="https://sunrise-sunset.org/api" target="_blank">Sunrise Sunset</a>
       </div>
       <div>
-        Icons by <a href="https://www.flaticon.com/authors/iconixar" title="iconixar">iconixar</a> on <a href="https://www.flaticon.com/" title="Flaticon">flaticon</a>
+        Icons by <a href="https://www.flaticon.com/authors/iconixar" title="iconixar">iconixar</a> on <a
+          href="https://www.flaticon.com/" title="Flaticon">flaticon</a>
       </div>
     </div>
   </footer>
@@ -254,4 +276,5 @@
 
   <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
