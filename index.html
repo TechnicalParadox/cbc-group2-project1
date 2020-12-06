@@ -10,7 +10,7 @@
   integrity="sha512-ZRv40llEogRmoWgZwnsqke3HNzJ0kiI0+pcMgiz2bxO6Ew1DVBtWjVn0qjrXdT3+u+pSN36gLgmJiiQ3cQtyzA=="
   crossorigin="anonymous"/>
   <!-- cdn for font awesome -->
-  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>  
+  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
   <!-- cdn for Bulma extension css -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@4.0.0/dist/css/bulma-extensions.min.css">
   <!-- link for stylesheet -->
@@ -190,29 +190,29 @@
     <div class="container my-6 has-text-centered">
       <div class="columns">
         <div class="column">
-          <div class="field">
+          <div id="switch-civ-time" class="field">
             <!-- <label for="switchRoundedOutlinedWarning">On: 12h format Off: 24h format</label> -->
             <input id="switchRoundedOutlinedWarning" type="checkbox" name="switchRoundedOutlinedWarning" class="switch is-rounded is-outlined is-warning" checked="checked">
             <label for="switchRoundedOutlinedWarning"></label>
             <p class="has-text-white">On: 12h format. Off: 24h format.</p>
           </div>
         </div>
-        <div class="column">
+        <div id="switch-search-timezone" class="column">
           <div class="field">
             <input id="switchRoundedOutlinedInfo" type="checkbox" name="switchRoundedOutlinedInfo" class="switch is-rounded is-outlined is-info" checked="checked">
             <label for="switchRoundedOutlinedInfo"></label>
             <p class="has-text-white">On: Local time. Off: Regional Time</p>
-          </div>          
+          </div>
         </div>
-        <div class="column">
-          <div class="field">            
+        <div id="switch-html5-location" class="column">
+          <div class="field">
             <input id="switchRoundedOutlinedDanger" type="checkbox" name="switchRoundedOutlinedDanger" class="switch is-rounded is-outlined is-danger" checked="checked">
-            <label for="switchRoundedOutlinedDanger"></label>            
+            <label for="switchRoundedOutlinedDanger"></label>
             <p class="has-text-white">On: html5 location. Off: last saved city</p>
           </div>
         </div>
       </div>
-      
+
     </div>
   </section>
 
@@ -226,7 +226,7 @@
   </footer>
   <!-- cdn for bulma extensions js -->
   <script src="https://cdn.jsdelivr.net/npm/bulma-extensions@4.0.0/dist/js/bulma-extensions.min.js"></script>
-  
+
   <!-- cdn for jquery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
     integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
