@@ -332,6 +332,47 @@ function milToCiv(time)
   return (hourNum + ":" + minute + amPM);
 }
 
+/**
+ * Converts civilian time into military time
+ * @param  {String} time - The time in civilian time
+ * @return {String}      - The time in military time
+ */
+function civToMil(time)
+{
+  let am = time.includes("AM");
+  let hour, minute;
+  let segment = "";
+  for (let c of time) // For each character in time
+  {
+    if (c == ":")
+    {
+      hour = segment;
+      segment = "";
+    }
+    else if (c == " ")
+      minute = segment;
+    else
+      segment += c;
+  }
+
+  if (am)
+  {
+    if (hour == 12)
+    {
+      hour = 0;
+    }
+  }
+  else
+  {
+    if (hour != 12)
+    {
+      hour = parseInt(hour) + 12;
+    }
+  }
+
+  return ("0"+hour).slice(-2) + ":" + ("0"+minute).slice(-2);
+}
+
 /** Handles click of search button. Saves most recent search to localStorage and
 fetches relevant data from API */
 $("#button_search").click(function()
@@ -392,8 +433,6 @@ $("#dropdown-recents").on('click', '#recent-search', function()
 
 $(".field").on('click', '.switch', function()
 {
-  console.log($(this).prop("checked"));
-  console.log($(this).parent().find("span").attr("id"));
 
   // Get spanID from switch label to indentify switch and get checked value
   let switchID = $(this).parent().parent().attr('id');
@@ -406,6 +445,7 @@ $(".field").on('click', '.switch', function()
   {
     case "switch-civ-time": // Military/Civilian toggle switch
       storage.setItem("type-time", switchVal);
+      updateExistingTimes(switchVal);
       break;
     case "switch-search-timezone": // Local/Search timezone switch
       storage.setItem("timezone", switchVal); // TODO:
@@ -418,4 +458,38 @@ $(".field").on('click', '.switch', function()
   }
 
   loadSwitchStates(); // Make sure switches are updated
-})
+});
+
+/**
+ * Pull existing times from page and convert them then update (called after military switch is toggled)
+ * @param  {boolean} toCiv - if the conversion is to civilian time, else its to Military
+ * @return {undefined}
+ */
+function updateExistingTimes(toCiv)
+{
+  // Pull existing times
+  let sunrise = $("#time_sunrise").html().trim();
+  let noon = $("#time_noon").html().trim();
+  let sunset = $("#time_sunset").html().trim();
+
+  if (sunrise == "") // there are no times to convert on the page
+    return;
+
+  if (toCiv) // convert to civilian time
+  {
+    sunrise = milToCiv(sunrise);
+    noon = milToCiv(noon);
+    sunset = milToCiv(sunset);
+  }
+  else // convert to military time
+  {
+    sunrise = civToMil(sunrise);
+    noon = civToMil(noon);
+    sunset = civToMil(sunset);
+  }
+
+  // Display updated times
+  $("#time_sunrise").html(sunrise);
+  $("#time_noon").html(noon);
+  $("#time_sunset").html(sunset);
+}
