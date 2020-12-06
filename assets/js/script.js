@@ -28,6 +28,50 @@ burgerButton.addEventListener('click', () => {
 
 
 
+// Load switch states on page load
+function loadSwitchStates()
+{
+  // Get states from localStorage
+  let storage = window.localStorage;
+
+  let timeType = storage.getItem("type-time");
+  let timezone = storage.getItem("timezone");
+  let location = storage.getItem("location");
+
+  if (timeType == "true")
+  {
+    $("#switch-civ-time").find("div").find("input").prop("checked", true);
+    $("#span-type-time").addClass("has-text-warning").html("Civilian");
+  }
+  else
+  {
+    $("#switch-civ-time").find("div").find("input").prop("checked", false);
+    $("#span-type-time").removeClass("has-text-warning").html("Military");
+  }
+
+  if (timezone == "true")
+  {
+    $("#switch-search-timezone").find("div").find("input").prop("checked", true);
+    $("#span-timezone").addClass("has-text-info").html("Searched");
+  }
+  else
+  {
+    $("#switch-search-timezone").find("div").find("input").prop("checked", false);
+    $("#span-timezone").removeClass("has-text-info").html("Local");
+  }
+
+  if (location == "true")
+  {
+    $("#switch-html5-location").find("div").find("input").prop("checked", true);
+    $("#span-location").addClass("has-text-danger").html("On");
+  }
+  else
+  {
+    $("#switch-html5-location").find("div").find("input").prop("checked", false);
+    $("#span-location").removeClass("has-text-danger").html("Off");
+  }
+}
+loadSwitchStates();
 
 /** Attempt to get users location with HTML5 */
 if (navigator.geolocation)
@@ -159,6 +203,15 @@ function updateTimes(lat, long, date)
     let sunset = utcToLocal(now, sunsetUTC);
     console.log("Local Times (24hr):", sunrise, noon, sunset);
 
+    // Check if user wants times displayed in civilian time and convert if so
+    let storage = window.localStorage;
+    if (storage.getItem("type-time") == "true")
+    {
+      sunrise = milToCiv(sunrise);
+      noon = milToCiv(noon);
+      sunset = milToCiv(sunset);
+    }
+
     // Display times
     $("#time_sunrise").html(sunrise);
     $("#time_noon").html(noon);
@@ -237,6 +290,89 @@ function utcToLocal (now, timeUTC)
   return ("0"+localTime.hour).slice(-2) + ":" + ("0"+localTime.minute).slice(-2);
 }
 
+/**
+ * Converts military time into civilian time
+ * @param  {String} time - The time in military time
+ * @return {String}      - The time in civilian time
+ */
+function milToCiv(time)
+{
+  // Get hour/minute from military time
+  let hour, minute;
+  let segment = "";
+  for (let c of time) // For each character in time
+  {
+    if (c == ":")
+    {
+      hour = segment;
+      segment = "";
+    }
+    else
+      segment += c;
+  }
+  minute = segment;
+
+  // Convert hour from military to civilian
+  let hourNum = parseInt(hour);
+  let amPM;
+  if (hourNum >= 12)
+  {
+    amPM = " PM";
+    if (hourNum != 12)
+      hourNum -= 12;
+  }
+  else
+  {
+    amPM = " AM";
+    if (hourNum == 0)
+      hourNum += 12;
+  }
+  hour = hourNum;
+
+  return (hourNum + ":" + minute + amPM);
+}
+
+/**
+ * Converts civilian time into military time
+ * @param  {String} time - The time in civilian time
+ * @return {String}      - The time in military time
+ */
+function civToMil(time)
+{
+  let am = time.includes("AM");
+  let hour, minute;
+  let segment = "";
+  for (let c of time) // For each character in time
+  {
+    if (c == ":")
+    {
+      hour = segment;
+      segment = "";
+    }
+    else if (c == " ")
+      minute = segment;
+    else
+      segment += c;
+  }
+
+  if (am)
+  {
+    if (hour == 12)
+    {
+      hour = 0;
+    }
+  }
+  else
+  {
+    if (hour != 12)
+    {
+      hour = parseInt(hour) + 12;
+    }
+  }
+
+  return ("0"+hour).slice(-2) + ":" + ("0"+minute).slice(-2);
+}
+
 /** Handles click of search button. Saves most recent search to localStorage and
 fetches relevant data from API */
 $("#button_search").click(function()
@@ -294,3 +430,66 @@ $("#dropdown-recents").on('click', '#recent-search', function()
   // Get coords from input and update sunrise/sunset times
   cityToCoords(search);
 });
+
+$(".field").on('click', '.switch', function()
+{
+
+  // Get spanID from switch label to indentify switch and get checked value
+  let switchID = $(this).parent().parent().attr('id');
+  let switchVal = $(this).prop("checked")
+
+  // Save switch state to localStorage after indentifying switch by spanID
+  // and make changes to page as needed
+  let storage = window.localStorage;
+  switch (switchID)
+  {
+    case "switch-civ-time": // Military/Civilian toggle switch
+      storage.setItem("type-time", switchVal);
+      updateExistingTimes(switchVal);
+      break;
+    case "switch-search-timezone": // Local/Search timezone switch
+      storage.setItem("timezone", switchVal); // TODO:
+      break;
+    case "switch-html5-location": // Use users location switch
+      storage.setItem("location", switchVal); // TODO:
+      break;
+    default:
+      console.log("error");
+  }
+
+  loadSwitchStates(); // Make sure switches are updated
+});
+
+/**
+ * Pull existing times from page and convert them then update (called after military switch is toggled)
+ * @param  {boolean} toCiv - if the conversion is to civilian time, else its to Military
+ * @return {undefined}
+ */
+function updateExistingTimes(toCiv)
+{
+  // Pull existing times
+  let sunrise = $("#time_sunrise").html().trim();
+  let noon = $("#time_noon").html().trim();
+  let sunset = $("#time_sunset").html().trim();
+
+  if (sunrise == "") // there are no times to convert on the page
+    return;
+
+  if (toCiv) // convert to civilian time
+  {
+    sunrise = milToCiv(sunrise);
+    noon = milToCiv(noon);
+    sunset = milToCiv(sunset);
+  }
+  else // convert to military time
+  {
+    sunrise = civToMil(sunrise);
+    noon = civToMil(noon);
+    sunset = civToMil(sunset);
+  }
+
+  // Display updated times
+  $("#time_sunrise").html(sunrise);
+  $("#time_noon").html(noon);
+  $("#time_sunset").html(sunset);
+}
