@@ -294,3 +294,30 @@ $("#dropdown-recents").on('click', '#recent-search', function()
   // Get coords from input and update sunrise/sunset times
   cityToCoords(search);
 });
+
+$(".field").on('click', '.switch', function()
+{
+  console.log($(this).prop("checked"));
+  console.log($(this).parent().find("span").attr("id"));
+
+  // Get spanID from switch label to indentify switch and get checked value
+  let spanID = $(this).parent().find("span").attr("id");
+  let switchVal = $(this).prop("checked")
+
+  // Save switch state to localStorage after indentifying switch by spanID
+  let storage = window.localStorage;
+  switch (spanID)
+  {
+    case "span-type-time": // Military/Civilian toggle switch
+      storage.setItem("type-time", switchVal);
+      break;
+    case "span-timezone": // Local/Search timezone switch
+      storage.setItem("timezone", switchVal);
+      break;
+    case "span-location": // Use users location switch
+      storage.setItem("location", switchVal);
+      break;
+    default:
+      console.log("error");
+  }
+})
