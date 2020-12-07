@@ -113,6 +113,10 @@ function updateLocation()
   {
     navigator.geolocation.getCurrentPosition(loadRecent); // Call loadRecent, passing location
   }
+  else // If browser does not support geolocation, notify user
+  {
+    $("#input_search").val("Autolocation is not supported by this browser");
+  }
 }
 
 /**
