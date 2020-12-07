@@ -73,10 +73,33 @@ function loadSwitchStates()
 }
 loadSwitchStates();
 
-/** Attempt to get users location with HTML5 */
-if (navigator.geolocation)
+
+function useLocation(enabled)
 {
-  navigator.geolocation.getCurrentPosition(loadRecent); // Call loadRecent, passing location
+  let storage = window.localStorage;
+
+  if (enabled)
+  {
+    $("#button_search").hide();
+    /** Attempt to get users location with HTML5 */
+    updateLocation();
+    setInterval(updateLocation, 900000); // Update location every 15 minutes (900,000ms)
+  }
+  else
+  {
+    $("#button_search").show();
+    $("#input_search").val("");
+    loadRecent();
+  }
+}
+useLocation(window.localStorage.getItem("location") === "true"); // Check if user wants to show their location
+
+function updateLocation()
+{
+  if (navigator.geolocation)
+  {
+    navigator.geolocation.getCurrentPosition(loadRecent); // Call loadRecent, passing location
+  }
 }
 
 /**
@@ -109,24 +132,28 @@ function cityToCoords(city)
 */
 function loadRecent(currentPos)
 {
-  // TODO: should populate recent searches navbar dropdown
-
   // Get most recent search from localStorage
   let storage = window.localStorage; // Reference localStorage
   let lastSearch = storage.getItem("recentSearches"); // WARNING: value is not actually the lastSearch yet
+  let useLocation = storage.getItem("location");
 
-  // Verify a recent search exists // TODO: simplify this function by removing currentPos parameter
-  if (lastSearch === null) // If no recent search is saved
+  // Use user's location instead of search
+  if (useLocation === "true") // If no recent search is saved
   {
     if (currentPos === undefined) // If no access to users current location
       return; // Return early, no need to go through rest of function
 
     // Get users coordinates from location and pass to update times
     let lat = currentPos.coords.latitude, long = currentPos.coords.longitude;
+    $("#input_search").val(lat + ", " + long);
     updateTimes(lat, long);
 
     return; // Return early, no need to go through rest of function
   }
+
+  // If there is no previous search, return out
+  if (lastSearch === null)
+    return;
 
   // Parse array of recentSearches from stringified data
   lastSearch = (JSON.parse(lastSearch))[0]; // Value is now the lastSearch
@@ -453,6 +480,7 @@ $(".field").on('click', '.switch', function()
       break;
     case "switch-html5-location": // Use users location switch
       storage.setItem("location", switchVal); // TODO:
+      useLocation(switchVal);
       break;
     default:
       console.log("error");
