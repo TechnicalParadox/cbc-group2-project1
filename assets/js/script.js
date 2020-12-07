@@ -136,9 +136,11 @@ function cityToCoords(city)
     // Get lat/lng out of response
     let lat = (data.results[0].geometry.lat);
     let lng = (data.results[0].geometry.lng);
+    // TODO: pull time zone from response
+    let tz;
 
     // Update times with coordinates.
-    updateTimes(lat, lng); // TODO: ADD TIMEZONE PARAMETER, CHECK IF ENABLED IN UPDATETIMES AND IF SO USE THAT TZ
+    updateTimes(lat, lng, tz); // TODO: ADD TIMEZONE PARAMETER, CHECK IF ENABLED IN UPDATETIMES AND IF SO USE THAT TZ
   });
 }
 
@@ -224,8 +226,10 @@ populateRecents(); // Populate recents menu immediately upon load
  * @param  {// TODO:} date - in future will be used to check solar times of different dates
  * @return {undefined}
  */
-function updateTimes(lat, long, date)
+function updateTimes(lat, long, tz)
 {
+  // TODO: check if date is being used and if so add it to the url
+
   // form URL to call API
   let url = "";
   if (date === undefined) // If date isn't provided, do not use date in url
@@ -498,7 +502,7 @@ $(".field").on('click', '.switch', function()
       storage.setItem("timezone", switchVal); // TODO:
       break;
     case "switch-html5-location": // Use users location switch
-      storage.setItem("location", switchVal); // TODO:
+      storage.setItem("location", switchVal);
       useLocation(switchVal);
       break;
     default:
