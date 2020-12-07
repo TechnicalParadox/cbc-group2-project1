@@ -17,10 +17,8 @@
 input:focus::placeholder {
   color: transparent;
 }
-/* for nav bar
-.navbar-item:hover {
-  background-color: hsl(348, 100%, 61%) !important;
-} */
+/* for nav bar */
+
 #github-link:hover {
   background-color:hsl(0, 0%, 4%);
 }
@@ -37,6 +35,7 @@ input:focus::placeholder {
 .navbar-dropdown {
   display: none;
 }
+/*opens and closes dropdown on smaller screen sizes*/
 #dropdown1:checked ~ #dropdown-recents,
 #dropdown2:checked ~ #about-us-dropdown {
   display: block;
