@@ -88,7 +88,9 @@ function useLocation(enabled)
   if (enabled)
   {
     $("#button_search").hide();
-    $("#input_search").attr('placeholder', "Please allow location access or disable autolocation")
+    $("#input_search").val("")
+      .attr('placeholder', "Please allow location access or disable autolocation")
+
     /** Attempt to get users location with HTML5 */
     updateLocation();
     updatingLocation = setInterval(updateLocation, 900000); // Update location every 15 minutes (900,000ms)
