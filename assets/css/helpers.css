@@ -21,7 +21,9 @@ input:focus::placeholder {
 .navbar-item:hover {
   background-color: hsl(348, 100%, 61%) !important;
 } */
-
+#github-link:hover {
+  background-color:hsl(0, 0%, 4%);
+}
 #recent-search:hover, 
 #navbar-itm-1:hover,
 #navbar-itm-2:hover {
