@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Sunrise-Sunset-App</title> <!-- TODO: update title -->
+  <title>Solar Time Tracker</title> <!-- TODO: update title -->
   <!-- cdn for bulma.io -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css"
     integrity="sha512-ZRv40llEogRmoWgZwnsqke3HNzJ0kiI0+pcMgiz2bxO6Ew1DVBtWjVn0qjrXdT3+u+pSN36gLgmJiiQ3cQtyzA=="
@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="assets/css/debug.css">
 
   <!-- Scroll cue thanks to https://cssanimation.rocks/scroll-cue/ -->
-  <section class="header-down-arrow is-hidden-mobile">
+  <section class="header-down-arrow">
     <img src="./assets/images/downarrow.png" width="50">
   </section>
 
@@ -37,7 +37,7 @@
     <div class="navbar-brand">
       <a class="navbar-item">
         <i class="fa fa-sun fa-2x has-text-white"></i>
-        <span class="ml-2">My-Time-Sun-Tracker</span>
+        <span class="ml-2">Solar Time Tracker</span>
       </a>
 
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar"
@@ -117,9 +117,12 @@
         <div class="columns is-hidden-desktop is-4-touch">
           <div class="column is-4 is-offset-4">
             <div class="card has-background-black has-text-centered">
-              <h1 class="title center has-text-warning">
-                My-Time
+              <h1 class="title center has-text-white">
+                <span class="has-text-warning">Solar</span>-
+                <span class="has-text-info">Time</span>-
+                <span class="has-text-danger">Tracker</span>
               </h1>
+<<<<<<< HEAD
               <h2 class="title center has-text-danger is-size-5-touch">
                 Sunrise + Sunset Tracker
               </h2>
@@ -127,6 +130,8 @@
               <p class="subtitle center is-size-5-touch">
                 A simple app to find solar <br>times in your local time.
               </p>
+=======
+>>>>>>> 8dc1c67886d76b3a428a995c41a2ea517a9272e0
             </div>
           </div>
         </div>
@@ -137,8 +142,10 @@
                 <img src="assets\images\sunrise.png" alt="sunrise">
               </div>
               <div class="card-content has-text-centered" id="times-sunrise">
-                <p class="has-text-warning is-size-3-mobile">Sunrise</p>
-                <p><span id="time_sunrise" class="has-text-warning has-text-weight-medium"></span></p>
+                <p class="has-text-warning is-size-3-mobile">
+                  Sunrise<br>
+                  <span id="time_sunrise_mobile" class="has-text-warning has-text-weight-medium"></span>
+                </p>
               </div>
             </div>
           </div>
@@ -150,8 +157,10 @@
                 <img src="assets\images\sun.png" alt="noon">
               </div>
               <div class="card-content has-text-centered" id="times-noon">
-                <p class="has-text-info is-size-3-mobile">Solar Noon</p>
-                <p><span id="time_noon" class="has-text-info has-text-weight-medium"></span></p>
+                <p class="has-text-info is-size-3-mobile">
+                  Solar Noon<br>
+                  <span id="time_noon" class="has-text-info has-text-weight-medium"></span>
+                </p>
               </div>
             </div>
           </div>
@@ -163,16 +172,21 @@
                 <img src="assets\images\sunrise.png" alt="sunrise">
               </div>
               <div class="card-content has-text-centered" id="times-sunrise">
-                <p class="has-text-warning is-size-3-mobile">Sunrise</p>
-                <p><span id="time_sunrise" class="has-text-warning has-text-weight-medium"></span></p>
+                <p class="has-text-warning is-size-3-mobile">
+                  Sunrise<br>
+                  <span id="time_sunrise_desktop" class="has-text-warning has-text-weight-medium"></span>
+                </p>
               </div>
             </div>
           </div>
           <div class=" column is-4">
             <div class="card has-background-black has-text-centered is-hidden-touch">
-              <h1 class="title center has-text-warning">
-                My-Time
+              <h1 class="title center has-text-white">
+                <span class="has-text-warning">Solar</span>-
+                <span class="has-text-info">Time</span>-
+                <span class="has-text-danger">Tracker</span>
               </h1>
+<<<<<<< HEAD
               <h2 class="title center has-text-danger is-size-5-desktop">
                 Sunrise / Sunset Tracker
               </h2>
@@ -181,6 +195,8 @@
                 A simple app to find solar times in your local time.
               </p>
 
+=======
+>>>>>>> 8dc1c67886d76b3a428a995c41a2ea517a9272e0
             </div>
           </div>
           <div class="column is-4">
@@ -189,8 +205,10 @@
                 <img src="assets\images\sunset.png" alt="sunset">
               </div>
               <div class="card-content has-text-centered" id="times-sunset">
-                <p class="has-text-danger is-size-3-mobile">Sunset</p>
-                <p> <span id="time_sunset" class="has-text-danger has-text-weight-medium"></span></p>
+                <p class="has-text-danger is-size-3-mobile">
+                  Sunset<br>
+                  <span id="time_sunset" class="has-text-danger has-text-weight-medium"></span>
+                </p>
               </div>
             </div>
           </div>

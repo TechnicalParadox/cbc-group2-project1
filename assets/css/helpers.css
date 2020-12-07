@@ -93,6 +93,7 @@ input:focus::placeholder {
     right: 0;
   text-align: center;
   z-index: 1;
+  display: none;
 }
 
 @keyframes fade-slide-up {
@@ -128,15 +129,12 @@ input:focus::placeholder {
 }
 
 /* Scroll cue end */
-/* 
-#times-sunrise {
 
+
+@media screen and (min-width: 1024px)
+{
+  .header-down-arrow
+  {
+    display: block;
+  }
 }
-
-#times-noon {
-
-}
-
-#times-sunset {
-
-} */
