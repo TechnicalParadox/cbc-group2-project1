@@ -75,8 +75,9 @@ loadSwitchStates();
 
 /**
  * Called when the user enables or disables the location switch. Determines whether
- * search button is shown or not, and whether updateLocation is called every 15mins
-* @param  {boolean} enabled - whether or not we should use the users location
+ * search button is shown or not, and whether updateLocation is called every 15mins.
+ * Also adjust placeholder of #input_search to be appropriate.
+ * @param  {boolean} enabled - whether or not we should use the users location
  * @return {undefined}
  */
 let updatingLocation;
@@ -87,6 +88,7 @@ function useLocation(enabled)
   if (enabled)
   {
     $("#button_search").hide();
+    $("#input_search").attr('placeholder', "Please allow location access or disable autolocation")
     /** Attempt to get users location with HTML5 */
     updateLocation();
     updatingLocation = setInterval(updateLocation, 900000); // Update location every 15 minutes (900,000ms)
@@ -95,7 +97,8 @@ function useLocation(enabled)
   {
     clearInterval(updatingLocation); // Stop updating location
     $("#button_search").show();
-    $("#input_search").val("");
+    $("#input_search").val("")
+      .attr('placeholder', "Search for any location (Address/City, ST/Zip, Country/etc.)");
     loadRecent();
   }
 }
@@ -104,7 +107,6 @@ useLocation(window.localStorage.getItem("location") === "true"); // Check if use
 /** Updates the user's location, requires HTML5 support */
 function updateLocation()
 {
-  console.log("updating");
   if (navigator.geolocation)
   {
     navigator.geolocation.getCurrentPosition(loadRecent); // Call loadRecent, passing location
