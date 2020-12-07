@@ -17,10 +17,30 @@
 input:focus::placeholder {
   color: transparent;
 }
-
+/* for nav bar
 .navbar-item:hover {
   background-color: hsl(348, 100%, 61%) !important;
+} */
+
+#recent-search:hover, 
+#navbar-itm-1:hover,
+#navbar-itm-2:hover {
+  background-color: hsl(348, 100%, 61%);
 }
+/* hide checkbox */
+.has-dropdown input[type=checkbox] {
+  display: none;
+}
+/* hide by default */
+.navbar-dropdown {
+  display: none;
+}
+#dropdown1:checked ~ #dropdown-recents,
+#dropdown2:checked ~ #about-us-dropdown {
+  display: block;
+}
+
+
 
 /* .navbar-item.left:hover {
   background-color: hsl(48, 100%, 67%);
