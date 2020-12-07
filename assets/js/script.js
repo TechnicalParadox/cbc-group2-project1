@@ -73,7 +73,13 @@ function loadSwitchStates()
 }
 loadSwitchStates();
 
-
+/**
+ * Called when the user enables or disables the location switch. Determines whether
+ * search button is shown or not, and whether updateLocation is called every 15mins
+* @param  {boolean} enabled - whether or not we should use the users location
+ * @return {undefined}
+ */
+let updatingLocation;
 function useLocation(enabled)
 {
   let storage = window.localStorage;
@@ -83,10 +89,11 @@ function useLocation(enabled)
     $("#button_search").hide();
     /** Attempt to get users location with HTML5 */
     updateLocation();
-    setInterval(updateLocation, 900000); // Update location every 15 minutes (900,000ms)
+    updatingLocation = setInterval(updateLocation, 900000); // Update location every 15 minutes (900,000ms)
   }
   else
   {
+    clearInterval(updatingLocation); // Stop updating location
     $("#button_search").show();
     $("#input_search").val("");
     loadRecent();
@@ -94,8 +101,10 @@ function useLocation(enabled)
 }
 useLocation(window.localStorage.getItem("location") === "true"); // Check if user wants to show their location
 
+/** Updates the user's location, requires HTML5 support */
 function updateLocation()
 {
+  console.log("updating");
   if (navigator.geolocation)
   {
     navigator.geolocation.getCurrentPosition(loadRecent); // Call loadRecent, passing location
@@ -114,12 +123,14 @@ function cityToCoords(city)
 
   $.get(url, function(data)
   {
+
+
     // Get lat/lng out of response
     let lat = (data.results[0].geometry.lat);
     let lng = (data.results[0].geometry.lng);
 
     // Update times with coordinates.
-    updateTimes(lat, lng);
+    updateTimes(lat, lng); // TODO: ADD TIMEZONE PARAMETER, CHECK IF ENABLED IN UPDATETIMES AND IF SO USE THAT TZ
   });
 }
 
