@@ -437,7 +437,7 @@ $(".field").on('click', '.switch', function()
 
   // Get spanID from switch label to indentify switch and get checked value
   let switchID = $(this).parent().parent().attr('id');
-  let switchVal = $(this).prop("checked")
+  let switchVal = $(this).prop("checked");
 
   // Save switch state to localStorage after indentifying switch by spanID
   // and make changes to page as needed
