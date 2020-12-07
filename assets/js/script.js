@@ -113,6 +113,10 @@ function updateLocation()
   {
     navigator.geolocation.getCurrentPosition(loadRecent); // Call loadRecent, passing location
   }
+  else // If browser does not support geolocation, notify user
+  {
+    $("#input_search").val("Autolocation is not supported by this browser");
+  }
 }
 
 /**
@@ -143,14 +147,14 @@ function cityToCoords(city)
 * #input_search's placeholder to be relevant, calls update to data fetch
 * function while passing coords.
 * @param  {[type]} currentPos - [optional] the users current location, to be
-*                              if no previous search is saved.
+*                              used if autolocation is enabled.
 */
 function loadRecent(currentPos)
 {
   // Get most recent search from localStorage
   let storage = window.localStorage; // Reference localStorage
   let lastSearch = storage.getItem("recentSearches"); // WARNING: value is not actually the lastSearch yet
-  let useLocation = storage.getItem("location");
+  let useLocation = storage.getItem("location"); // whether or not autolocation is enabled
 
   // Use user's location instead of search
   if (useLocation === "true") // If no recent search is saved
