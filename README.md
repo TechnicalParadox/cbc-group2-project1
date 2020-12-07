@@ -11,8 +11,8 @@ This app allows the user to find sunrise and sunset times <br>
 
 ## Contributors 
 
-- [Giamo Lao](cbc-group2-project1\assets\images\5107397.png)
-- [Gintautas Stirbys](cbc-group2-project1\assets\images\70384913.png)
+- Giamo Lao 
+- Gintautas Stirbys
 
 ## Project Requirements
 
@@ -48,7 +48,7 @@ Link to [Gint's Portfolio](https://gintstir.github.io/Portfolio/)<br>
 
 Screenshot of website:
 
->![Solar-Time-Tracker](cbc-group2-project1\assets\images\deployed-site-screenshot.png)
+>![Solar-Time-Tracker](/cbc-group2-project1/assets/images/deployed-site-screenshot.png)
 
 
 <br>
