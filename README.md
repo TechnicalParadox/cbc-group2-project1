@@ -11,8 +11,8 @@ This app allows the user to find sunrise and sunset times <br>
 
 ## Contributors 
 
-- Giamo Lao ![TechnicalParadox](./assets/images/5107397.png)
-- Gintautas Stirbys ![Gintstir](./assests/images/70384913.png)
+-  ![TechnicalParadox](./assets/images/5107397.png) **Giamo Lao**
+-  ![Gintstir](./assets/images/70384913.png) **Gintautas Stirbys**
 
 ## Project Requirements
 
