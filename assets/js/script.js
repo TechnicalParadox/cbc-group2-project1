@@ -136,9 +136,11 @@ function cityToCoords(city)
     // Get lat/lng out of response
     let lat = (data.results[0].geometry.lat);
     let lng = (data.results[0].geometry.lng);
+    let dst = data.results[0].annotations.timezone.now_in_dst == "1";
+    let tz = (data.results[0].annotations.timezone.offset_string);
 
     // Update times with coordinates.
-    updateTimes(lat, lng); // TODO: ADD TIMEZONE PARAMETER, CHECK IF ENABLED IN UPDATETIMES AND IF SO USE THAT TZ
+    updateTimes(lat, lng, tz, dst); // TODO: ADD TIMEZONE PARAMETER, CHECK IF ENABLED IN UPDATETIMES AND IF SO USE THAT TZ
   });
 }
 
@@ -221,10 +223,12 @@ populateRecents(); // Populate recents menu immediately upon load
  * Updates the solar times using the new geolocation
  * @param  {String} lat  - the lattitude DD coordinate
  * @param  {String} long - the longitude DD coordinate
+ * @param  {String} tz   - the offset of the timezone "-0500" for EST, etc
+ * @param  {boolean} dst - true if timezone is currently in DST
  * @param  {// TODO:} date - in future will be used to check solar times of different dates
  * @return {undefined}
  */
-function updateTimes(lat, long, date)
+function updateTimes(lat, long, tz, dst, date)
 {
   // form URL to call API
   let url = "";
@@ -242,15 +246,33 @@ function updateTimes(lat, long, date)
     let sunsetUTC = data.results.sunset;
     console.log("UTC Times (12hr):", sunriseUTC, noonUTC, sunsetUTC);
 
-    // Convert Times UTC -> Local
-    let now = luxon.DateTime.fromJSDate(new Date()); // Create Luxon.DateTime object from current JS date
-    let sunrise = utcToLocal(now, sunriseUTC);
-    let noon = utcToLocal(now, noonUTC);
-    let sunset = utcToLocal(now, sunsetUTC);
-    console.log("Local Times (24hr):", sunrise, noon, sunset);
+    // Check if the user wants the times displayed in local time or searched time and set times
+    let storage = window.localStorage;
+    let useSearched = storage.getItem("timezone") == "true";
+
+    let sunrise, noon, sunset;
+
+    if (useSearched && !(tz === undefined || dst === undefined)) // if tz or dst is undefined, searched is users location, so go to else and convert to local
+    {
+      // Convert Times UTC -> Searched Timezone
+      let offset = parseInt(tz.slice(0,3)); // the number of hours to add/subtract
+      console.log("DST: "+dst, "Offset: "+offset);
+      offset = dst ? offset + 1 : offset; // If DST, add hour to offset
+      sunrise = utcToSearched(sunriseUTC, offset);
+      noon = utcToSearched(noonUTC, offset);
+      sunset = utcToSearched(sunsetUTC, offset);
+      console.log("Searched Times (24hr):", sunrise, noon, sunset);
+    }
+    else // Convert Times UTC -> Local
+    {
+      let now = luxon.DateTime.fromJSDate(new Date()); // Create Luxon.DateTime object from current JS date
+      sunrise = utcToLocal(now, sunriseUTC);
+      noon = utcToLocal(now, noonUTC);
+      sunset = utcToLocal(now, sunsetUTC);
+      console.log("Local Times (24hr):", sunrise, noon, sunset);
+    }
 
     // Check if user wants times displayed in civilian time and convert if so
-    let storage = window.localStorage;
     if (storage.getItem("type-time") == "true")
     {
       sunrise = milToCiv(sunrise);
@@ -337,6 +359,67 @@ function utcToLocal (now, timeUTC)
   return ("0"+localTime.hour).slice(-2) + ":" + ("0"+localTime.minute).slice(-2);
 }
 
+function utcToSearched(timeUTC, offset)
+{
+  let am = timeUTC.includes('AM');
+
+  let word = "", hour = 0, min = 0; // quick-init variables we need
+  let phase = 0; // counter num to determine which section of the time is being processed
+
+  // Loop through every character of the UTC time and determine the hour and minute's values
+  for (char of timeUTC)
+  {
+    if (char == ":") // if : we know we have read the previous segment
+    {
+      phase++; // move to next phase/segment
+
+      switch (phase) // check which phase we are in
+      {
+        case 1: // Phase 1 obtains the hour value and resets word to ""
+          hour = parseInt(word);
+          word = "";
+          break;
+        case 2: // Phase 2 obtains the minute value
+          min = parseInt(word);
+          break;
+
+        default:
+          break;
+      }
+    }
+    else // if not : we add the character to our current word
+      word += char;
+
+  }
+  // We now have hour and minute integer values that represent the fetched
+  // UTC solar time.
+
+// We convert the hours from a 12 hour system to 24 hour military time
+// We must do this because we need to enter an hour in 24 hour format for Luxon
+  // If it is 12am, we set the hour to 0
+  if (am)
+  {
+    if (hour == 12)
+      hour = 0;
+  }
+  // If it is not AM, and not 12 PM, we add 12 hours, ex. 7PM -> 19 (military hour)
+  else
+  {
+    if (hour != 12)
+      hour += 12;
+  }
+
+  // Apply offset
+  hour += offset;
+  if (hour < 0)
+    hour += 24;
+  else if (hour >= 24)
+    hour -= 24;
+
+  // Return 24hr time in searched timezone
+  return ("0"+hour).slice(-2) + ":" + ("0"+min).slice(-2);
+}
+
 /**
  * Converts military time into civilian time
  * @param  {String} time - The time in military time
@@ -420,9 +503,14 @@ function civToMil(time)
   return ("0"+hour).slice(-2) + ":" + ("0"+minute).slice(-2);
 }
 
-/** Handles click of search button. Saves most recent search to localStorage and
-fetches relevant data from API */
+/** Handles click of search button.*/
 $("#button_search").click(function()
+{
+  search();
+});
+
+/** Saves most recent search to localStorage and fetches relevant data from API */
+function search()
 {
   // Get input value from #input_search
   let input = $("#input_search").val();
@@ -466,7 +554,7 @@ $("#button_search").click(function()
 
   // Get coords from input and update sunrise/sunset times
   cityToCoords(input);
-});
+}
 
 /** Handles click on item in recent seraches menu, runs new search */
 $("#dropdown-recents").on('click', '#recent-search', function()
@@ -495,10 +583,11 @@ $(".field").on('click', '.switch', function()
       updateExistingTimes(switchVal);
       break;
     case "switch-search-timezone": // Local/Search timezone switch
-      storage.setItem("timezone", switchVal); // TODO:
+      storage.setItem("timezone", switchVal);
+      search();
       break;
     case "switch-html5-location": // Use users location switch
-      storage.setItem("location", switchVal); // TODO:
+      storage.setItem("location", switchVal);
       useLocation(switchVal);
       break;
     default:
