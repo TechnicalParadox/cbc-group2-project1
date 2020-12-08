@@ -359,6 +359,13 @@ function utcToLocal (now, timeUTC)
   return ("0"+localTime.hour).slice(-2) + ":" + ("0"+localTime.minute).slice(-2);
 }
 
+/**
+ * // TODO: can be simplified as it contains much of the same code as utcToLocal
+ * Converts UTC time according to the passed offset
+ * @param  {String} timeUTC - The time in UTC "HH:MM:SS AM/PM"
+ * @param  {Integer} offset - +/- offset to apply to the hours
+ * @return {String}         - 24 hour time in applied timezone
+ */
 function utcToSearched(timeUTC, offset)
 {
   let am = timeUTC.includes('AM');
@@ -566,6 +573,7 @@ $("#dropdown-recents").on('click', '#recent-search', function()
   cityToCoords(search);
 });
 
+/** Handles click on switches */
 $(".field").on('click', '.switch', function()
 {
 
