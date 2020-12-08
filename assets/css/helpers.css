@@ -22,7 +22,7 @@ input:focus::placeholder {
 #github-link:hover {
   background-color:hsl(0, 0%, 4%);
 }
-#recent-search:hover, 
+#recent-search:hover,
 #navbar-itm-1:hover,
 #navbar-itm-2:hover {
   background-color: hsl(348, 100%, 61%);
@@ -157,5 +157,10 @@ input:focus::placeholder {
   .header-down-arrow
   {
     display: block;
+  }
+
+  .has-desktop-spacer
+  {
+    padding-bottom: 140px;
   }
 }
