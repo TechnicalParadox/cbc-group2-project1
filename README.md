@@ -16,7 +16,7 @@ This app allows the user to find sunrise and sunset times <br>
 
 ## Project Requirements
 
-```
+
 - [x] Use a CSS framework other than Bootstrap.
 - [x] Be deployed to GitHub Pages. 
 - [x] Be interactive (i.e., accept and respond to user input).
@@ -29,7 +29,7 @@ This app allows the user to find sunrise and sunset times <br>
 - [x] Have a quality README.
 - [x] Finally, you must add your project to the portfolio that you created in Module 2.
 
-```
+
 <br>
 
 ## Links
