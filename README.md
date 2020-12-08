@@ -48,7 +48,7 @@ Link to [Gint's Portfolio](https://gintstir.github.io/Portfolio/)<br>
 
 Screenshot of website:
 
-> ![Solar-Time-Tracker](/cbc-group2-project1/assets/images/screencapture-technicalparadox-github-io-cbc-group2-project1-2020-12-07-17_07_02.png)
+> ![Solar-Time-Tracker](./assets/images/screencapture-technicalparadox-github-io-cbc-group2-project1-2020-12-07-17_07_02.png)
 
 
 <br>
