@@ -230,6 +230,8 @@ populateRecents(); // Populate recents menu immediately upon load
  */
 function updateTimes(lat, long, tz, dst, date)
 {
+  // TODO: check if date is being used and if so add it to the url
+
   // form URL to call API
   let url = "";
   if (date === undefined) // If date isn't provided, do not use date in url

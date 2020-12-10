@@ -11,8 +11,8 @@ This app allows the user to find sunrise and sunset times <br>
 
 ## Contributors 
 
-- Giamo Lao 
-- Gintautas Stirbys
+-  ![TechnicalParadox](./assets/images/5107397.png) **Giamo Lao**
+-  ![Gintstir](./assets/images/70384913.png) **Gintautas Stirbys**
 
 ## Project Requirements
 
@@ -81,12 +81,28 @@ This project uses calls to the following APIs:
  - <a href="https://opencagedata.com/api" target="_blank">OpenCage API</a>
  - <a href="https://moment.github.io/luxon/docs/identifiers.html" target="_blank">Luxon</a>
 
+
+## License
+<br>
+ 
+**MIT License**
+<br>
+
+Copyright © 2020 Giamo Lao & Gintautas Stirbys
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 ## **Credits**
 
 Thank you to @Iconixar from <a href="https://www.flaticon.com/authors/iconixar">flaticon.</a> <br>
 
-Thanks to UPennLPS Coding Bootcamp. Thank you to the bootcamp instructors and TA's for all their help along the way ❤.  
+Thank you to <a href="https://opensource.org/licenses/MIT">Open Source Initiative</a> for the license found above.  
 
+Thanks to UPennLPS Coding Bootcamp. Thank you to the bootcamp instructors and TA's for all their help along the way ❤.  
 
 
 
