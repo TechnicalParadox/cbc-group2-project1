@@ -36,7 +36,7 @@ This app allows the user to find sunrise and sunset times <br>
 
 Link to the [Github Repository](https://technicalparadox.github.io/)<br> 
 
-Link to the [Deployed Webiste](https://technicalparadox.github.io/cbc-group2-project1/)<br>
+Link to the [Deployed Webiste](https://technicalparadox.github.io/solar-time-tracker/)<br>
 
 Link to [Giamo's Portfolio](https://technicalparadox.github.io/)
 
